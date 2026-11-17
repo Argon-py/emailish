@@ -7,3 +7,5 @@ data/
 *.sqlite3
 *.har
 .env
+benchmark/results/
+benchmark/controlled_addresses.csv

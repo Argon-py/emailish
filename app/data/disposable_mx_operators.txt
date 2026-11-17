@@ -1,0 +1,37 @@
+# Disposable-mail MX operators (registrable domain of the MX host).
+# A domain whose MX hosts are under one of these is classified DISPOSABLE
+# (sub_status disposable_mx), even if the domain itself is not yet listed.
+#
+# Derivation (2026-11-17), reproducible with scripts/derive_disposable_mx.py:
+#   1. Resolved MX (DNS-over-HTTPS) for 900 random domains from
+#      disposable_domains.txt (709 answered).
+#   2. Ranked MX registrable domains by how many disposable domains they serve.
+#   3. Kept an operator if it is itself on the disposable list (served >=2 sampled
+#      disposable domains), or served >=8 sampled disposable domains.
+#   4. Excluded shared/general infrastructure seen in the ranking: cloudflare.net,
+#      google.com, mailgun.org, amazonaws.com, registrar-servers.com,
+#      secureserver.net, yandex.net, ovh.net, regery.net, above.com (parking),
+#      fr.nf (free DNS), generic-isp.com, localhost.
+#   5. Cross-checked against MX of 700 sampled free-provider domains: no
+#      mainstream provider uses any operator below.
+# Format: operator  <TAB> sampled disposable domains served
+chatgpt.org.uk	84
+wallywatts.com	41
+wabblywabble.com	41
+generator.email	35
+gravityengine.cc	32
+tinyhost.shop	28
+vietxf.com	17
+casadorock.com	16
+emailfake.com	14
+oneb.net	13
+rejecthost.com	8
+mailinator.com	6
+yopmail.com	5
+tempmail.cloud	4
+papierkorb.me	3
+discard.email	3
+i2b.vn	3
+spam4.me	3
+duckmail.sbs	2
+spamdecoy.net	2

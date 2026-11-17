@@ -1,0 +1,31 @@
+# Domains that must never be classified as disposable, even if a third-party
+# list includes them. Major mailbox providers and privacy-forwarding services
+# whose users keep their addresses long-term.
+gmail.com
+googlemail.com
+outlook.com
+hotmail.com
+live.com
+msn.com
+yahoo.com
+aol.com
+icloud.com
+me.com
+mac.com
+proton.me
+protonmail.com
+pm.me
+gmx.com
+gmx.de
+gmx.net
+web.de
+mail.com
+zoho.com
+yandex.com
+yandex.ru
+fastmail.com
+tutanota.com
+tuta.io
+hey.com
+duck.com
+privaterelay.appleid.com

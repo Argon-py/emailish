@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emailish · Email Verifier</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1d2330; --muted: #667085; --line: #e4e7ec;
+    --accent: #2f6fed; --accent-text: #ffffff; --warn-bg: #fff6e5; --warn-line: #f5c26b; --warn-text: #7a4b00;
+    --err: #c0362c; --bar: #e9edf5;
+    --s-valid: #1f8a4c; --s-invalid: #c0362c; --s-catch: #a66a00; --s-disp: #b4541a;
+    --s-role: #2f6fed; --s-risky: #a66a00; --s-unknown: #667085;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151b; --card: #1b2029; --text: #e6e9ef; --muted: #98a2b3; --line: #2c3340;
+      --accent: #5b8cff; --warn-bg: #2b2414; --warn-line: #7a5a1c; --warn-text: #f1c983; --bar: #2c3340;
+      --s-valid: #4cc38a; --s-invalid: #ff7b72; --s-catch: #e3b341; --s-disp: #f0883e;
+      --s-role: #79a6ff; --s-risky: #e3b341; --s-unknown: #98a2b3;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 16px; margin: 0 0 12px; }
+  .step { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+          color: var(--accent-text); text-align: center; font-size: 13px; line-height: 22px; margin-right: 8px; }
+  .banner { background: var(--warn-bg); border: 1px solid var(--warn-line); color: var(--warn-text);
+            border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+  .banner b { display: block; margin-bottom: 2px; }
+  .drop { display: block; border: 2px dashed var(--line); border-radius: 10px; padding: 28px; text-align: center; color: var(--muted); cursor: pointer; }
+  .drop.over { border-color: var(--accent); color: var(--text); }
+  input[type=file] { display: none; }
+  button, .btn { background: var(--accent); color: var(--accent-text); border: 0; border-radius: 8px; padding: 9px 16px;
+                 font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+  button:disabled { opacity: .5; cursor: default; }
+  .btn.secondary { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  select { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--text); min-width: 220px; }
+  .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .scroll { overflow-x: auto; margin-top: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 600; }
+  th.sel, td.sel { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .bar { height: 10px; background: var(--bar); border-radius: 6px; overflow: hidden; margin: 10px 0 6px; }
+  .bar > div { height: 100%; width: 0; background: var(--accent); transition: width .3s; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font-size: 13px; }
+  .chip b { margin-left: 4px; }
+  .s-VALID { color: var(--s-valid); } .s-INVALID { color: var(--s-invalid); } .s-CATCH_ALL { color: var(--s-catch); }
+  .s-DISPOSABLE { color: var(--s-disp); } .s-ROLE_BASED { color: var(--s-role); } .s-RISKY { color: var(--s-risky); }
+  .s-UNKNOWN, .s-TIMEOUT { color: var(--s-unknown); }
+  .err { color: var(--err); margin-top: 8px; }
+  .hidden { display: none; }
+  @media (max-width: 600px) { select { min-width: 0; width: 100%; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>emailish</h1>
+  <p class="sub">Upload a list, verify every address, download it back with results added.</p>
+
+  <div id="banner" class="banner hidden"></div>
+
+  <section class="card" id="upload-card">
+    <h2><span class="step">1</span>Upload file</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept=".csv,.tsv,.txt,.xlsx,.xlsm,.xls">
+      Drop a CSV, TXT or Excel file here, or click to choose
+    </label>
+    <div id="upload-err" class="err"></div>
+  </section>
+
+  <section class="card hidden" id="column-card">
+    <h2><span class="step">2</span>Email column</h2>
+    <div class="row">
+      <select id="column"></select>
+      <span class="muted" id="file-info"></span>
+    </div>
+    <div class="scroll"><table id="preview"></table></div>
+    <div class="row" style="margin-top:16px">
+      <button id="start">Start verification</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="progress-card">
+    <h2><span class="step">3</span>Verification</h2>
+    <div class="bar"><div id="bar"></div></div>
+    <div class="muted" id="phase"></div>
+    <div id="result" class="hidden">
+      <div class="chips" id="chips"></div>
+      <div class="row">
+        <a class="btn" id="dl-xlsx">Download Excel</a>
+        <a class="btn secondary" id="dl-csv">Download CSV</a>
+      </div>
+    </div>
+    <div id="job-err" class="err"></div>
+  </section>
+
+  <section class="card">
+    <h2>History</h2>
+    <div class="scroll"><table id="history"></table></div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ORDER = ["VALID","INVALID","CATCH_ALL","ROLE_BASED","DISPOSABLE","RISKY","UNKNOWN","TIMEOUT"];
+let job = null, poll = null, preview = [];
+
+async function api(path, opts) {
+  const r = await fetch(path, opts);
+  const body = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(body.detail || r.statusText);
+  return body;
+}
+
+async function health() {
+  try {
+    const h = await api("/api/health");
+    const msgs = [];
+    if (h.smtp_available === false) msgs.push(`<b>Mailbox (SMTP) checks cannot run on this machine.</b>${esc(h.smtp_note)}`);
+    for (const w of h.warnings || []) msgs.push(esc(w));
+    if (msgs.length) { $("banner").innerHTML = msgs.join("<br>"); $("banner").classList.remove("hidden"); }
+  } catch (e) {}
+}
+
+function renderPreview() {
+  const col = $("column").value;
+  if (!preview.length) { $("preview").innerHTML = ""; return; }
+  const cols = Object.keys(preview[0]);
+  $("preview").innerHTML = "<tr>" + cols.map(c => `<th class="${c===col?"sel":""}">${esc(c)}</th>`).join("") + "</tr>" +
+    preview.map(r => "<tr>" + cols.map(c => `<td class="${c===col?"sel":""}">${esc(r[c])}</td>`).join("") + "</tr>").join("");
+}
+
+async function uploadFile(f) {
+  $("upload-err").textContent = "";
+  const fd = new FormData(); fd.append("file", f);
+  try {
+    const r = await api("/api/upload", {method: "POST", body: fd});
+    job = r.job_id; preview = r.preview;
+    $("column").innerHTML = r.columns.map(c => `<option ${c===r.detected_column?"selected":""}>${esc(c)}</option>`).join("");
+    $("file-info").textContent = `${r.filename} · ${r.rows.toLocaleString()} rows` +
+      (r.detected_column ? ` · detected "${r.detected_column}"` : " · no email column detected, please choose");
+    $("column-card").classList.remove("hidden");
+    $("progress-card").classList.add("hidden");
+    $("start").disabled = false;
+    renderPreview();
+  } catch (e) { $("upload-err").textContent = e.message; }
+}
+
+function chips(summary) {
+  const s = (summary && summary.by_status) || {};
+  return ORDER.filter(k => s[k]).map(k => `<span class="chip s-${k}">${k}<b>${s[k].toLocaleString()}</b></span>`).join("");
+}
+
+async function track(id) {
+  clearInterval(poll);
+  $("progress-card").classList.remove("hidden");
+  $("result").classList.add("hidden");
+  $("job-err").textContent = "";
+  const tick = async () => {
+    const j = await api(`/api/jobs/${id}`);
+    const pct = j.unique_emails ? Math.round(100 * j.done / j.unique_emails) : 0;
+    $("bar").style.width = (j.status === "done" ? 100 : pct) + "%";
+    $("phase").textContent = j.status === "done" ? `Done · ${j.total_rows.toLocaleString()} rows` :
+      `${j.phase || j.status} · ${j.done.toLocaleString()} / ${j.unique_emails.toLocaleString()} unique addresses`;
+    if (j.status === "done") {
+      clearInterval(poll);
+      $("chips").innerHTML = chips(j.summary);
+      $("dl-csv").href = `/api/jobs/${id}/download?format=csv`;
+      $("dl-xlsx").href = `/api/jobs/${id}/download?format=xlsx`;
+      $("dl-xlsx").classList.toggle("hidden", !(j.summary && j.summary.xlsx));
+      $("result").classList.remove("hidden");
+      history();
+    } else if (j.status === "failed" || j.status === "interrupted") {
+      clearInterval(poll);
+      $("job-err").textContent = j.error || j.status;
+      history();
+    }
+  };
+  await tick();
+  poll = setInterval(() => tick().catch(() => {}), 1000);
+}
+
+async function history() {
+  const jobs = await api("/api/jobs");
+  if (!jobs.length) { $("history").innerHTML = `<tr><td class="muted">No verifications yet.</td></tr>`; return; }
+  $("history").innerHTML = "<tr><th>File</th><th>When (UTC)</th><th>Rows</th><th>Status</th><th>Results</th><th></th></tr>" +
+    jobs.map(j => `<tr><td>${esc(j.filename)}</td><td>${esc((j.created_at||"").replace("T"," ").replace("Z",""))}</td>
+      <td>${(j.total_rows||0).toLocaleString()}</td><td>${esc(j.status)}</td>
+      <td><div class="chips" style="margin:0">${chips(j.summary)}</div></td>
+      <td>${j.status==="done" ? `<a href="/api/jobs/${j.id}/download?format=xlsx">xlsx</a> · <a href="/api/jobs/${j.id}/download?format=csv">csv</a>` : ""}</td></tr>`).join("");
+}
+
+$("file").addEventListener("change", e => e.target.files[0] && uploadFile(e.target.files[0]));
+const drop = $("drop");
+["dragenter","dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+["dragleave","drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+drop.addEventListener("drop", e => e.dataTransfer.files[0] && uploadFile(e.dataTransfer.files[0]));
+$("column").addEventListener("change", renderPreview);
+$("start").addEventListener("click", async () => {
+  $("start").disabled = true;
+  try {
+    await api(`/api/jobs/${job}/start`, {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({email_column: $("column").value})});
+    track(job);
+  } catch (e) { $("job-err").textContent = e.message; $("start").disabled = false; }
+});
+health(); history();
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+services:
+  emailish:
+    build: .
+    ports: ["8000:8000"]
+    volumes: ["./data:/data"]
+    environment:
+      # A hostname you control, with reverse DNS (PTR) pointing back to this server's IP:
+      EMAILISH_HELO_HOST: ${EMAILISH_HELO_HOST:-}
+      EMAILISH_MAIL_FROM: ${EMAILISH_MAIL_FROM:-}
