@@ -18,7 +18,7 @@ from ..config import Settings
 from . import lists, replies, smtp
 from .dnslayer import DomainCache, DomainInfo, pick_backend
 from .models import Certainty, SmtpStatus, Status, VerificationResult
-from .syntax import SyntaxResult, check_syntax
+from .syntax import SyntaxResult, check_syntax, is_blank
 from .throttle import Throttle
 
 ProgressCb = Callable[[int, int, str], Awaitable[None] | None]
@@ -80,6 +80,8 @@ class Verifier:
         if self.backend is None:
             self.backend, note = await pick_backend(self.s.dns_mode)
             self.status.dns_backend = note
+            if note.startswith("WARNING"):
+                self.status.warnings.append(note)
         else:
             self.status.dns_backend = getattr(self.backend, "name", "custom")
         if not self.s.smtp_enabled:
@@ -88,7 +90,7 @@ class Verifier:
             self.status.smtp_available, self.status.smtp_note = True, "egress check skipped by configuration"
         elif self.status.smtp_available is None or force_egress_check:
             await self.check_egress()
-        if self.s.helo_host.startswith("localhost"):
+        if self.s.smtp_enabled and self.s.helo_host.startswith("localhost"):
             self.status.warnings.append(
                 "HELO hostname is not a real FQDN; many mail servers will block probes. "
                 "Set EMAILISH_HELO_HOST to a hostname with matching reverse DNS.")
@@ -210,7 +212,7 @@ class Verifier:
         return p
 
     def _syntax_invalid(self, p: Prelim) -> VerificationResult:
-        empty = not p.syn.normalized
+        empty = is_blank(p.raw)    # "empty" means the cell itself is blank, not e.g. "mailto:" or "<>"
         return VerificationResult(
             email=p.syn.normalized or p.raw,
             email_status=Status.INVALID,

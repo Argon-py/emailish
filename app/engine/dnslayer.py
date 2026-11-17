@@ -132,7 +132,13 @@ async def self_test(backend) -> tuple[bool, str]:
 async def pick_backend(mode: str = "auto"):
     """Return (backend, note). auto = system resolver if it passes the self-test, else DoH."""
     if mode == "system":
-        return SystemBackend(), "system resolver (forced)"
+        sysb = SystemBackend()
+        ok, why = await self_test(sysb)
+        if ok:
+            return sysb, "system resolver (forced)"
+        return sysb, ("WARNING: system resolver (forced by EMAILISH_DNS_MODE=system) failed the MX self-test "
+                      f"({why}). MX-based results (mx_found, Null MX, implicit MX) will be wrong. "
+                      "Use EMAILISH_DNS_MODE=auto or doh.")
     if mode == "doh":
         return DohBackend(), "DNS-over-HTTPS (forced)"
     sysb = SystemBackend()

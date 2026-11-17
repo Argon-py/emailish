@@ -284,3 +284,15 @@ def test_reserved_tlds_are_invalid(verifier):
     for e, r in res.items():
         assert r.email_status == Status.INVALID, e
         assert r.certainty == Certainty.CONFIRMED
+
+
+def test_wrapper_only_cells_are_syntax_invalid_not_empty(verifier):
+    res = verify(verifier, "mailto:", "<>", "   ")
+    assert res["mailto:"].sub_status == "failed_syntax_check"
+    assert res["<>"].sub_status == "failed_syntax_check"
+    assert res["   "].sub_status == "empty"
+
+
+def test_zero_width_space_does_not_make_a_good_address_invalid(verifier):
+    res = verify(verifier, "alice@valid.mock​")
+    assert res["alice@valid.mock​"].email_status == Status.VALID

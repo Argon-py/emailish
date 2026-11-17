@@ -53,7 +53,8 @@ def create_app(settings: Settings | None = None, verifier: Verifier | None = Non
     @app.get("/api/health")
     async def health():
         st = app.state.verifier.status
-        return {"dns_backend": st.dns_backend, "smtp_available": st.smtp_available, "smtp_note": st.smtp_note,
+        return {"dns_backend": st.dns_backend, "smtp_enabled": app.state.verifier.s.smtp_enabled,
+                "smtp_available": st.smtp_available, "smtp_note": st.smtp_note,
                 "helo_host": st.helo_host, "mail_from": st.mail_from, "warnings": st.warnings}
 
     @app.post("/api/upload")

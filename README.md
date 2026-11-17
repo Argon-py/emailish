@@ -138,6 +138,17 @@ unroutable MX, disposable by list and by MX, and typo domains. It also checks th
 `DATA` is never sent, that duplicates are probed once, and the rate-limit spacing.
 Results from the last run are in [`research/test-results.md`](research/test-results.md).
 
+### QA with a 1,000-record synthetic list (SMTP disabled)
+
+```bash
+python test_data/run_qa.py        # starts the app, uploads CSV + XLSX, checks every row and both exports
+python test_data/run_layers.py    # syntax, dataset and DNS layers tested separately
+```
+
+Report: [`research/QA_REPORT.md`](research/QA_REPORT.md) · data:
+[`research/TEST_DATA_GUIDE.md`](research/TEST_DATA_GUIDE.md) · bugs:
+[`research/FAILED_TESTS.md`](research/FAILED_TESTS.md)
+
 ## Benchmark against ZeroBounce / MillionVerifier / Hunter
 
 ```bash

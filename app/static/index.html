@@ -125,7 +125,9 @@ async function health() {
   try {
     const h = await api("/api/health");
     const msgs = [];
-    if (h.smtp_available === false) msgs.push(`<b>Mailbox (SMTP) checks cannot run on this machine.</b>${esc(h.smtp_note)}`);
+    if (h.smtp_enabled === false) msgs.push(`<b>Mailbox (SMTP) checks are turned off.</b>Syntax, DNS and list checks run; ` +
+      `addresses that need a mailbox check are reported as UNKNOWN (smtp_disabled), never VALID.`);
+    else if (h.smtp_available === false) msgs.push(`<b>Mailbox (SMTP) checks cannot run on this machine.</b>${esc(h.smtp_note)}`);
     for (const w of h.warnings || []) msgs.push(esc(w));
     if (msgs.length) { $("banner").innerHTML = msgs.join("<br>"); $("banner").classList.remove("hidden"); }
   } catch (e) {}

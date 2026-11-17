@@ -8,6 +8,10 @@ from email_validator import EmailNotValidError, validate_email
 
 _MAILTO = re.compile(r"^mailto:", re.I)
 _WRAPPERS = "<>\"' \t\r\n;,"
+# Invisible format characters that copy-paste from web pages / Excel leaves around a value.
+# str.strip() does not remove them (they are not Unicode whitespace). They are only trimmed
+# at the edges; inside an address they remain an error.
+_INVISIBLE = "\u200b\u200c\u200d\u2060\ufeff"
 
 
 @dataclass
@@ -19,17 +23,34 @@ class SyntaxResult:
     reason: str = ""
 
 
+def _trim(s: str, chars: str) -> str:
+    prev = None
+    while prev != s:
+        prev = s
+        s = s.strip().strip(chars)
+    return s
+
+
+def is_blank(raw: str) -> bool:
+    """True for an empty cell: nothing but whitespace / invisible characters."""
+    return not _trim(raw or "", _INVISIBLE)
+
+
 def clean(raw: str) -> str:
-    """Strip the wrappers people paste into spreadsheets: spaces, <>, quotes, mailto:."""
-    s = (raw or "").strip().strip(_WRAPPERS)
-    s = _MAILTO.sub("", s).strip(_WRAPPERS)
+    """Strip the wrappers people paste into spreadsheets: spaces, invisible characters,
+    <>, quotes, mailto:."""
+    s = _trim(raw or "", _WRAPPERS + _INVISIBLE)
+    s = _trim(_MAILTO.sub("", s), _WRAPPERS + _INVISIBLE)
     return s
 
 
 def check_syntax(raw: str) -> SyntaxResult:
     s = clean(raw)
     if not s:
-        return SyntaxResult(False, "", reason="No email address in this cell")
+        if is_blank(raw):
+            return SyntaxResult(False, "", reason="No email address in this cell")
+        return SyntaxResult(False, "", reason="No address found: the cell only contains wrapper "
+                                              f"characters ({(raw or '').strip()[:40]!r})")
     if s.count("@") != 1:
         return SyntaxResult(False, s, reason="Address must contain exactly one '@'")
     local, _, domain = s.rpartition("@")

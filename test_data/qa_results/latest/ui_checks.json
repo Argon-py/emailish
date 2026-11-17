@@ -1,0 +1,82 @@
+[
+ {
+  "name": "UI: banner explains that mailbox checks are not running",
+  "ok": true,
+  "detail": "Mailbox (SMTP) checks are turned off.Syntax, DNS and list checks run; addresses that need "
+ },
+ {
+  "name": "UI: XLSX upload shows auto-detected column",
+  "ok": true,
+  "detail": "Email Address"
+ },
+ {
+  "name": "UI: row count shown after upload",
+  "ok": true,
+  "detail": "synthetic_1000.xlsx · 1,000 rows · detected \"Email Address\""
+ },
+ {
+  "name": "UI: preview table rendered",
+  "ok": true,
+  "detail": "5 preview rows"
+ },
+ {
+  "name": "UI: job completes and result panel appears",
+  "ok": true,
+  "detail": "10.0 s"
+ },
+ {
+  "name": "UI: progress text shown while running",
+  "ok": true,
+  "detail": " | reading file · N / M unique addresses | syntax · N / M unique addresses | verifying · N / M unique addresses"
+ },
+ {
+  "name": "UI: progress bar never moves backwards",
+  "ok": true,
+  "detail": "90 samples, last 98%"
+ },
+ {
+  "name": "UI: result chips show status counts",
+  "ok": true,
+  "detail": "INVALID470DISPOSABLE123RISKY45UNKNOWN362"
+ },
+ {
+  "name": "UI: no VALID chip without SMTP",
+  "ok": true,
+  "detail": "INVALID470DISPOSABLE123RISKY45UNKNOWN362"
+ },
+ {
+  "name": "UI: Excel download button works",
+  "ok": true,
+  "detail": "synthetic_1000_verified.xlsx"
+ },
+ {
+  "name": "UI: CSV download button works",
+  "ok": true,
+  "detail": "synthetic_1000_verified.csv"
+ },
+ {
+  "name": "UI: manual column change highlights the chosen column",
+  "ok": true,
+  "detail": "auto=Email, highlighted=Backup Email"
+ },
+ {
+  "name": "UI: manually selected column was verified (30 INVALID Null-MX)",
+  "ok": true,
+  "detail": "INVALID30"
+ },
+ {
+  "name": "UI: history lists both jobs as done",
+  "ok": true,
+  "detail": "2 rows"
+ },
+ {
+  "name": "UI: history offers xlsx/csv downloads",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "name": "UI: no horizontal page scroll at 390px width",
+  "ok": true,
+  "detail": "scrollWidth 390"
+ }
+]

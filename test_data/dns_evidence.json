@@ -1,0 +1,2708 @@
+{
+ "captured_at": "2026-11-17T13:47:54+00:00",
+ "domains": {
+  "10dk.email": {
+   "domain": "10dk.email",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "10minutemail.com": {
+   "domain": "10minutemail.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "10minutemail.com": [
+     "172.66.41.26",
+     "172.66.42.230",
+     "2606:4700:3108::ac42:291a",
+     "2606:4700:3108::ac42:2ae6"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "21cn.com": {
+   "domain": "21cn.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mta.21cn.com."
+   ],
+   "mx_hosts": [
+    "mta.21cn.com"
+   ],
+   "mx_ips": {
+    "mta.21cn.com": [
+     "14.18.69.193"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "3a88.dev": {
+   "domain": "3a88.dev",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "aakkmail.com": {
+   "domain": "aakkmail.com",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "amail.com": {
+   "domain": "amail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx.emailarray.com.",
+    "20 mx2.emailarray.com."
+   ],
+   "mx_hosts": [
+    "mx.emailarray.com",
+    "mx2.emailarray.com"
+   ],
+   "mx_ips": {
+    "mx.emailarray.com": [
+     "65.39.216.37",
+     "65.39.216.12",
+     "65.39.216.33",
+     "65.39.216.91",
+     "65.39.216.41"
+    ],
+    "mx2.emailarray.com": [
+     "65.39.216.33",
+     "65.39.216.41",
+     "65.39.216.37"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "anappthat.com": {
+   "domain": "anappthat.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 eforward1.registrar-servers.com.",
+    "10 eforward2.registrar-servers.com.",
+    "10 eforward3.registrar-servers.com.",
+    "15 eforward4.registrar-servers.com.",
+    "20 eforward5.registrar-servers.com."
+   ],
+   "mx_hosts": [
+    "eforward1.registrar-servers.com",
+    "eforward2.registrar-servers.com",
+    "eforward3.registrar-servers.com",
+    "eforward4.registrar-servers.com",
+    "eforward5.registrar-servers.com"
+   ],
+   "mx_ips": {
+    "eforward1.registrar-servers.com": [
+     "162.255.118.51"
+    ],
+    "eforward2.registrar-servers.com": [
+     "162.255.118.52"
+    ],
+    "eforward3.registrar-servers.com": [
+     "162.255.118.51"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "aol.com": {
+   "domain": "aol.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx-aol.mail.gm0.yahoodns.net."
+   ],
+   "mx_hosts": [
+    "mx-aol.mail.gm0.yahoodns.net"
+   ],
+   "mx_ips": {
+    "mx-aol.mail.gm0.yahoodns.net": [
+     "67.195.204.75",
+     "67.195.204.80",
+     "98.136.96.92",
+     "98.136.96.93",
+     "67.195.228.86",
+     "67.195.228.84"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "aol.con": {
+   "domain": "aol.con",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "ashgroveventures.net": {
+   "domain": "ashgroveventures.net",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.ashgroveventures.net."
+   ],
+   "mx_hosts": [
+    "mail.ashgroveventures.net"
+   ],
+   "mx_ips": {
+    "mail.ashgroveventures.net": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "aws-mail-free-7477.dynv6.net": {
+   "domain": "aws-mail-free-7477.dynv6.net",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 email.chatgpt.org.uk."
+   ],
+   "mx_hosts": [
+    "email.chatgpt.org.uk"
+   ],
+   "mx_ips": {
+    "email.chatgpt.org.uk": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "azame.pw": {
+   "domain": "azame.pw",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.azame.pw."
+   ],
+   "mx_hosts": [
+    "mail.azame.pw"
+   ],
+   "mx_ips": {
+    "mail.azame.pw": [
+     "212.87.214.42"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "baizoto.shop": {
+   "domain": "baizoto.shop",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 tinyhost.shop."
+   ],
+   "mx_hosts": [
+    "tinyhost.shop"
+   ],
+   "mx_ips": {
+    "tinyhost.shop": [
+     "144.91.107.45"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "bashyrcn.yachts": {
+   "domain": "bashyrcn.yachts",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "blogos.net": {
+   "domain": "blogos.net",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "blogos.net": [
+     "172.67.144.195",
+     "104.21.95.123",
+     "2606:4700:3034::ac43:90c3",
+     "2606:4700:3035::6815:5f7b"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "boxmail.lol": {
+   "domain": "boxmail.lol",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx1.boxmail.lol.",
+    "10 mx2.boxmail.lol."
+   ],
+   "mx_hosts": [
+    "mx1.boxmail.lol",
+    "mx2.boxmail.lol"
+   ],
+   "mx_ips": {
+    "mx1.boxmail.lol": [
+     "77.74.177.61"
+    ],
+    "mx2.boxmail.lol": [
+     "77.74.177.73"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "bukatv8.com": {
+   "domain": "bukatv8.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 generator.email."
+   ],
+   "mx_hosts": [
+    "generator.email"
+   ],
+   "mx_ips": {
+    "generator.email": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "chotgo.com": {
+   "domain": "chotgo.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 generator.email."
+   ],
+   "mx_hosts": [
+    "generator.email"
+   ],
+   "mx_ips": {
+    "generator.email": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "clonemailsieure.com": {
+   "domain": "clonemailsieure.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 emailfake.com.",
+    "10 mx2.hostinger.com.",
+    "5 mx1.hostinger.com."
+   ],
+   "mx_hosts": [
+    "emailfake.com",
+    "mx1.hostinger.com",
+    "mx2.hostinger.com"
+   ],
+   "mx_ips": {
+    "emailfake.com": [
+     "91.196.52.205"
+    ],
+    "mx1.hostinger.com": [
+     "172.65.182.103",
+     "2606:4700:90:0:c1f8:f874:2386:b61f"
+    ],
+    "mx2.hostinger.com": [
+     "172.65.182.103",
+     "2606:4700:90:0:c1f8:f874:2386:b61f"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "clonemoi.tk": {
+   "domain": "clonemoi.tk",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "cnamed.com": {
+   "domain": "cnamed.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "cnamed.com": [
+     "172.65.211.209"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "cocoro.uk": {
+   "domain": "cocoro.uk",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 recv300.erinn.biz.",
+    "10 recv301.erinn.biz.",
+    "10 recv302.erinn.biz.",
+    "10 recv303.erinn.biz.",
+    "10 recv304.erinn.biz.",
+    "10 recv305.erinn.biz.",
+    "10 recv306.erinn.biz."
+   ],
+   "mx_hosts": [
+    "recv300.erinn.biz",
+    "recv301.erinn.biz",
+    "recv302.erinn.biz",
+    "recv303.erinn.biz",
+    "recv304.erinn.biz",
+    "recv305.erinn.biz",
+    "recv306.erinn.biz"
+   ],
+   "mx_ips": {
+    "recv300.erinn.biz": [
+     "160.251.81.146"
+    ],
+    "recv301.erinn.biz": [
+     "133.130.102.153"
+    ],
+    "recv302.erinn.biz": [
+     "160.251.107.128"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "coolingamcuae.xyz": {
+   "domain": "coolingamcuae.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 mail.coolingamcuae.xyz."
+   ],
+   "mx_hosts": [
+    "mail.coolingamcuae.xyz"
+   ],
+   "mx_ips": {
+    "mail.coolingamcuae.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "crapmail.org": {
+   "domain": "crapmail.org",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.shitmail.org."
+   ],
+   "mx_hosts": [
+    "mail.shitmail.org"
+   ],
+   "mx_ips": {
+    "mail.shitmail.org": [
+     "51.178.83.40"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "cwetg.co.uk": {
+   "domain": "cwetg.co.uk",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "dailycoolcare.xyz": {
+   "domain": "dailycoolcare.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.dailycoolcare.xyz."
+   ],
+   "mx_hosts": [
+    "mail.dailycoolcare.xyz"
+   ],
+   "mx_ips": {
+    "mail.dailycoolcare.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "delvionis.cfd": {
+   "domain": "delvionis.cfd",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "digi-value.fr": {
+   "domain": "digi-value.fr",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mx0.mail.ovh.net.",
+    "5 mx1.mail.ovh.net.",
+    "50 mx2.mail.ovh.net.",
+    "100 mx3.mail.ovh.net."
+   ],
+   "mx_hosts": [
+    "mx0.mail.ovh.net",
+    "mx1.mail.ovh.net",
+    "mx2.mail.ovh.net",
+    "mx3.mail.ovh.net"
+   ],
+   "mx_ips": {
+    "mx0.mail.ovh.net": [
+     "178.33.252.245"
+    ],
+    "mx1.mail.ovh.net": [
+     "188.165.36.237"
+    ],
+    "mx2.mail.ovh.net": [
+     "87.98.160.167"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "dispostable.com": {
+   "domain": "dispostable.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.dispostable.com."
+   ],
+   "mx_hosts": [
+    "mail.dispostable.com"
+   ],
+   "mx_ips": {
+    "mail.dispostable.com": [
+     "188.166.49.116"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "dubairepairassist.com": {
+   "domain": "dubairepairassist.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.dubairepairassist.com."
+   ],
+   "mx_hosts": [
+    "mail.dubairepairassist.com"
+   ],
+   "mx_ips": {
+    "mail.dubairepairassist.com": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "dxbmaintenanceuae.xyz": {
+   "domain": "dxbmaintenanceuae.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.dxbmaintenanceuae.xyz."
+   ],
+   "mx_hosts": [
+    "mail.dxbmaintenanceuae.xyz"
+   ],
+   "mx_ips": {
+    "mail.dxbmaintenanceuae.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "dyebkj.eu.cc": {
+   "domain": "dyebkj.eu.cc",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 email.chatgpt.org.uk."
+   ],
+   "mx_hosts": [
+    "email.chatgpt.org.uk"
+   ],
+   "mx_ips": {
+    "email.chatgpt.org.uk": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "e-marketstore.ru": {
+   "domain": "e-marketstore.ru",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "eanok.com": {
+   "domain": "eanok.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 em4.rejecthost.com.",
+    "0 srv4.rejecthost.com."
+   ],
+   "mx_hosts": [
+    "em4.rejecthost.com",
+    "srv4.rejecthost.com"
+   ],
+   "mx_ips": {
+    "em4.rejecthost.com": [
+     "165.22.205.213"
+    ],
+    "srv4.rejecthost.com": [
+     "165.22.204.99"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "elerso.com": {
+   "domain": "elerso.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.elerso.com."
+   ],
+   "mx_hosts": [
+    "mail.elerso.com"
+   ],
+   "mx_ips": {
+    "mail.elerso.com": [
+     "157.230.203.88"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "ellertongroup.net": {
+   "domain": "ellertongroup.net",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.ellertongroup.net."
+   ],
+   "mx_hosts": [
+    "mail.ellertongroup.net"
+   ],
+   "mx_ips": {
+    "mail.ellertongroup.net": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "emailgo.de": {
+   "domain": "emailgo.de",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "emailgo.de": [
+     "172.67.216.3",
+     "104.21.78.42",
+     "2606:4700:3035::6815:4e2a",
+     "2606:4700:3034::ac43:d803"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "emailish-qa-nonexistent.zzqq": {
+   "domain": "emailish-qa-nonexistent.zzqq",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "emailish-qa.notarealtld": {
+   "domain": "emailish-qa.notarealtld",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "emailxfer.com": {
+   "domain": "emailxfer.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.emailxfer.com."
+   ],
+   "mx_hosts": [
+    "mail.emailxfer.com"
+   ],
+   "mx_ips": {
+    "mail.emailxfer.com": [
+     "104.248.39.236"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "emaxasp.com": {
+   "domain": "emaxasp.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.wabblywabble.com.",
+    "10 mail.wallywatts.com."
+   ],
+   "mx_hosts": [
+    "mail.wabblywabble.com",
+    "mail.wallywatts.com"
+   ],
+   "mx_ips": {
+    "mail.wabblywabble.com": [
+     "188.166.111.252",
+     "142.132.166.12"
+    ],
+    "mail.wallywatts.com": [
+     "116.202.9.167",
+     "46.101.111.206"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "example.com": {
+   "domain": "example.com",
+   "fact": "null_mx",
+   "mx": [
+    "0 ."
+   ],
+   "mx_rcode": 0
+  },
+  "example.net": {
+   "domain": "example.net",
+   "fact": "null_mx",
+   "mx": [
+    "0 ."
+   ],
+   "mx_rcode": 0
+  },
+  "example.org": {
+   "domain": "example.org",
+   "fact": "null_mx",
+   "mx": [
+    "0 ."
+   ],
+   "mx_rcode": 0
+  },
+  "examstudy.xyz": {
+   "domain": "examstudy.xyz",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "expertskarama.xyz": {
+   "domain": "expertskarama.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.expertskarama.xyz."
+   ],
+   "mx_hosts": [
+    "mail.expertskarama.xyz"
+   ],
+   "mx_ips": {
+    "mail.expertskarama.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "fafa.beer": {
+   "domain": "fafa.beer",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 email.chatgpt.org.uk."
+   ],
+   "mx_hosts": [
+    "email.chatgpt.org.uk"
+   ],
+   "mx_ips": {
+    "email.chatgpt.org.uk": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "ffps.fun": {
+   "domain": "ffps.fun",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "24 route3.mx.cloudflare.net.",
+    "30 route2.mx.cloudflare.net.",
+    "79 route1.mx.cloudflare.net."
+   ],
+   "mx_hosts": [
+    "route3.mx.cloudflare.net",
+    "route2.mx.cloudflare.net",
+    "route1.mx.cloudflare.net"
+   ],
+   "mx_ips": {
+    "route1.mx.cloudflare.net": [
+     "162.159.205.12",
+     "162.159.205.13",
+     "162.159.205.11",
+     "2606:4700:f5::d",
+     "2606:4700:f5::b",
+     "2606:4700:f5::c"
+    ],
+    "route2.mx.cloudflare.net": [
+     "162.159.205.17",
+     "162.159.205.18",
+     "162.159.205.19",
+     "2606:4700:f5::f",
+     "2606:4700:f5::10",
+     "2606:4700:f5::e"
+    ],
+    "route3.mx.cloudflare.net": [
+     "162.159.205.25",
+     "162.159.205.23",
+     "162.159.205.24",
+     "2606:4700:f5::11",
+     "2606:4700:f5::12",
+     "2606:4700:f5::13"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "firerocket.site": {
+   "domain": "firerocket.site",
+   "fact": "no_mail_host",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_ips": {
+    "firerocket.site": []
+   },
+   "mx_rcode": 0
+  },
+  "frostfixit.xyz": {
+   "domain": "frostfixit.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 mail.frostfixit.xyz."
+   ],
+   "mx_hosts": [
+    "mail.frostfixit.xyz"
+   ],
+   "mx_ips": {
+    "mail.frostfixit.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "fsotl.icu": {
+   "domain": "fsotl.icu",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "fsotl.icu": [
+     "81.70.77.67"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "fuckxxme.top": {
+   "domain": "fuckxxme.top",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "gamil.com": {
+   "domain": "gamil.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.gamil.com."
+   ],
+   "mx_hosts": [
+    "mail.gamil.com"
+   ],
+   "mx_ips": {
+    "mail.gamil.com": [
+     "192.252.154.117"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "getnada.com": {
+   "domain": "getnada.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.getnada.com."
+   ],
+   "mx_hosts": [
+    "mail.getnada.com"
+   ],
+   "mx_ips": {
+    "mail.getnada.com": [
+     "15.204.213.223"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gmai.com": {
+   "domain": "gmai.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mail.h-email.net."
+   ],
+   "mx_hosts": [
+    "mail.h-email.net"
+   ],
+   "mx_ips": {
+    "mail.h-email.net": [
+     "165.227.156.49",
+     "5.75.171.74",
+     "167.235.143.33",
+     "5.161.98.212",
+     "162.55.164.116",
+     "165.227.159.144",
+     "91.107.214.206",
+     "5.161.194.135",
+     "49.13.4.90",
+     "178.62.199.248"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gmail.c": {
+   "domain": "gmail.c",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "gmail.com": {
+   "domain": "gmail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 alt1.gmail-smtp-in.l.google.com.",
+    "40 alt4.gmail-smtp-in.l.google.com.",
+    "30 alt3.gmail-smtp-in.l.google.com.",
+    "5 gmail-smtp-in.l.google.com.",
+    "20 alt2.gmail-smtp-in.l.google.com."
+   ],
+   "mx_hosts": [
+    "gmail-smtp-in.l.google.com",
+    "alt1.gmail-smtp-in.l.google.com",
+    "alt2.gmail-smtp-in.l.google.com",
+    "alt3.gmail-smtp-in.l.google.com",
+    "alt4.gmail-smtp-in.l.google.com"
+   ],
+   "mx_ips": {
+    "alt1.gmail-smtp-in.l.google.com": [
+     "192.178.234.26",
+     "2800:3f0:4003:c14::1b"
+    ],
+    "alt2.gmail-smtp-in.l.google.com": [
+     "172.253.116.26",
+     "2a00:1450:400b:c02::1a"
+    ],
+    "gmail-smtp-in.l.google.com": [
+     "172.253.122.26",
+     "2607:f8b0:4004:c19::1a"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gmail.con": {
+   "domain": "gmail.con",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "gmaill.com": {
+   "domain": "gmaill.com",
+   "fact": "no_mail_host",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_ips": {
+    "gmaill.com": []
+   },
+   "mx_rcode": 0
+  },
+  "gmailxsn.site": {
+   "domain": "gmailxsn.site",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "46 route2.mx.cloudflare.net.",
+    "74 route3.mx.cloudflare.net.",
+    "93 route1.mx.cloudflare.net."
+   ],
+   "mx_hosts": [
+    "route2.mx.cloudflare.net",
+    "route3.mx.cloudflare.net",
+    "route1.mx.cloudflare.net"
+   ],
+   "mx_ips": {
+    "route1.mx.cloudflare.net": [
+     "162.159.205.12",
+     "162.159.205.13",
+     "162.159.205.11",
+     "2606:4700:f5::d",
+     "2606:4700:f5::b",
+     "2606:4700:f5::c"
+    ],
+    "route2.mx.cloudflare.net": [
+     "162.159.205.19",
+     "162.159.205.17",
+     "162.159.205.18",
+     "2606:4700:f5::e",
+     "2606:4700:f5::f",
+     "2606:4700:f5::10"
+    ],
+    "route3.mx.cloudflare.net": [
+     "162.159.205.23",
+     "162.159.205.24",
+     "162.159.205.25",
+     "2606:4700:f5::11",
+     "2606:4700:f5::12",
+     "2606:4700:f5::13"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gmailxsn.space": {
+   "domain": "gmailxsn.space",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 route3.mx.cloudflare.net.",
+    "15 route1.mx.cloudflare.net.",
+    "5 route2.mx.cloudflare.net."
+   ],
+   "mx_hosts": [
+    "route3.mx.cloudflare.net",
+    "route2.mx.cloudflare.net",
+    "route1.mx.cloudflare.net"
+   ],
+   "mx_ips": {
+    "route1.mx.cloudflare.net": [
+     "162.159.205.12",
+     "162.159.205.13",
+     "162.159.205.11",
+     "2606:4700:f5::b",
+     "2606:4700:f5::c",
+     "2606:4700:f5::d"
+    ],
+    "route2.mx.cloudflare.net": [
+     "162.159.205.17",
+     "162.159.205.18",
+     "162.159.205.19",
+     "2606:4700:f5::f",
+     "2606:4700:f5::10",
+     "2606:4700:f5::e"
+    ],
+    "route3.mx.cloudflare.net": [
+     "162.159.205.23",
+     "162.159.205.24",
+     "162.159.205.25",
+     "2606:4700:f5::13",
+     "2606:4700:f5::11",
+     "2606:4700:f5::12"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gmial.com": {
+   "domain": "gmial.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "gmial.com": [
+     "51.79.68.169"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gmx.com": {
+   "domain": "gmx.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx00.gmx.net.",
+    "10 mx01.gmx.net."
+   ],
+   "mx_hosts": [
+    "mx00.gmx.net",
+    "mx01.gmx.net"
+   ],
+   "mx_ips": {
+    "mx00.gmx.net": [
+     "212.227.15.150"
+    ],
+    "mx01.gmx.net": [
+     "213.165.67.123"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gnail.com": {
+   "domain": "gnail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx2.oweb.cn.",
+    "5 mx1.oweb.cn."
+   ],
+   "mx_hosts": [
+    "mx1.oweb.cn",
+    "mx2.oweb.cn"
+   ],
+   "mx_ips": {
+    "mx1.oweb.cn": [
+     "222.73.173.98"
+    ],
+    "mx2.oweb.cn": [
+     "222.73.173.98"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "gng.edu.pl": {
+   "domain": "gng.edu.pl",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "googlemial.com": {
+   "domain": "googlemial.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "googlemial.com": [
+     "177.211.105.208"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "guerrillamail.com": {
+   "domain": "guerrillamail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.guerrillamail.com."
+   ],
+   "mx_hosts": [
+    "mail.guerrillamail.com"
+   ],
+   "mx_ips": {
+    "mail.guerrillamail.com": [
+     "178.162.170.166"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "habitue.net": {
+   "domain": "habitue.net",
+   "fact": "no_mail_host",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_ips": {
+    "habitue.net": []
+   },
+   "mx_rcode": 0
+  },
+  "heycmm.cn": {
+   "domain": "heycmm.cn",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 email.gravityengine.cc."
+   ],
+   "mx_hosts": [
+    "email.gravityengine.cc"
+   ],
+   "mx_ips": {
+    "email.gravityengine.cc": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "hiddentragedy.com": {
+   "domain": "hiddentragedy.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "hiddentragedy.com": [
+     "207.148.248.143"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "hotmail.co": {
+   "domain": "hotmail.co",
+   "fact": "no_mail_host",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_ips": {
+    "hotmail.co": []
+   },
+   "mx_rcode": 0
+  },
+  "hotmail.com": {
+   "domain": "hotmail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "2 hotmail-com.olc.protection.outlook.com."
+   ],
+   "mx_hosts": [
+    "hotmail-com.olc.protection.outlook.com"
+   ],
+   "mx_ips": {
+    "hotmail-com.olc.protection.outlook.com": [
+     "52.101.73.122",
+     "52.101.50.12",
+     "52.101.40.27",
+     "52.101.209.152"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "hotmal.com": {
+   "domain": "hotmal.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "hotmal.com": [
+     "20.76.201.171",
+     "20.112.250.133",
+     "20.236.44.162",
+     "20.231.239.246",
+     "20.70.246.20"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "hotmial.com": {
+   "domain": "hotmial.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 mail.h-email.net."
+   ],
+   "mx_hosts": [
+    "mail.h-email.net"
+   ],
+   "mx_ips": {
+    "mail.h-email.net": [
+     "91.107.214.206",
+     "5.161.194.135",
+     "49.13.4.90",
+     "178.62.199.248",
+     "165.227.156.49",
+     "5.75.171.74",
+     "167.235.143.33",
+     "5.161.98.212",
+     "162.55.164.116",
+     "165.227.159.144"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "icloud.co": {
+   "domain": "icloud.co",
+   "fact": "dns_error",
+   "mx": [],
+   "mx_rcode": "error"
+  },
+  "icloud.com": {
+   "domain": "icloud.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx01.mail.icloud.com.",
+    "10 mx02.mail.icloud.com."
+   ],
+   "mx_hosts": [
+    "mx01.mail.icloud.com",
+    "mx02.mail.icloud.com"
+   ],
+   "mx_ips": {
+    "mx01.mail.icloud.com": [
+     "17.57.155.25",
+     "17.57.156.30",
+     "17.42.251.62",
+     "17.56.9.31",
+     "17.57.152.5",
+     "17.57.154.33"
+    ],
+    "mx02.mail.icloud.com": [
+     "17.42.251.62",
+     "17.56.9.31",
+     "17.57.152.5",
+     "17.57.154.33",
+     "17.57.155.25",
+     "17.57.156.30"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "inboxdesign.me": {
+   "domain": "inboxdesign.me",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx.powered.name."
+   ],
+   "mx_hosts": [
+    "mx.powered.name"
+   ],
+   "mx_ips": {
+    "mx.powered.name": [
+     "65.109.49.216"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "init.ink": {
+   "domain": "init.ink",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 email.chatgpt.org.uk."
+   ],
+   "mx_hosts": [
+    "email.chatgpt.org.uk"
+   ],
+   "mx_ips": {
+    "email.chatgpt.org.uk": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "iroid.com": {
+   "domain": "iroid.com",
+   "fact": "null_mx",
+   "mx": [
+    "0 ."
+   ],
+   "mx_rcode": 0
+  },
+  "izunasuite.biz.id": {
+   "domain": "izunasuite.biz.id",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 email.gravityengine.cc."
+   ],
+   "mx_hosts": [
+    "email.gravityengine.cc"
+   ],
+   "mx_ips": {
+    "email.gravityengine.cc": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "jbsze.com": {
+   "domain": "jbsze.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "50 prd-smtp.10minutemail.com."
+   ],
+   "mx_hosts": [
+    "prd-smtp.10minutemail.com"
+   ],
+   "mx_ips": {
+    "prd-smtp.10minutemail.com": [
+     "52.25.207.32"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "joetestalot.com": {
+   "domain": "joetestalot.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.joetestalot.com."
+   ],
+   "mx_hosts": [
+    "mail.joetestalot.com"
+   ],
+   "mx_ips": {
+    "mail.joetestalot.com": [
+     "162.241.113.55"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "jpco.org": {
+   "domain": "jpco.org",
+   "fact": "null_mx",
+   "mx": [
+    "0 ."
+   ],
+   "mx_rcode": 0
+  },
+  "junk.to": {
+   "domain": "junk.to",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "junk.to": [
+     "104.21.92.212",
+     "172.67.198.215",
+     "2606:4700:3034::6815:5cd4",
+     "2606:4700:3033::ac43:c6d7"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "karatraman.ml": {
+   "domain": "karatraman.ml",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "kravintis.cfd": {
+   "domain": "kravintis.cfd",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "linkedintuts2016.pw": {
+   "domain": "linkedintuts2016.pw",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "live.com": {
+   "domain": "live.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "2 live-com.olc.protection.outlook.com."
+   ],
+   "mx_hosts": [
+    "live-com.olc.protection.outlook.com"
+   ],
+   "mx_ips": {
+    "live-com.olc.protection.outlook.com": [
+     "52.101.50.12",
+     "52.101.41.5",
+     "52.101.60.172",
+     "52.101.42.85"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "logicstreak.com": {
+   "domain": "logicstreak.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx.smtp.is."
+   ],
+   "mx_hosts": [
+    "mx.smtp.is"
+   ],
+   "mx_ips": {
+    "mx.smtp.is": [
+     "49.12.18.190"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mail.com": {
+   "domain": "mail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx00.mail.com.",
+    "10 mx01.mail.com."
+   ],
+   "mx_hosts": [
+    "mx00.mail.com",
+    "mx01.mail.com"
+   ],
+   "mx_ips": {
+    "mx00.mail.com": [
+     "74.208.114.67"
+    ],
+    "mx01.mail.com": [
+     "74.208.114.68"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mailbai.com": {
+   "domain": "mailbai.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "mailbai.com": [
+     "47.91.170.222",
+     "8.218.208.240",
+     "47.76.127.217"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mailboxy.fun": {
+   "domain": "mailboxy.fun",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx37.mb5p.com.",
+    "20 mx37.m1bp.com."
+   ],
+   "mx_hosts": [
+    "mx37.mb5p.com",
+    "mx37.m1bp.com"
+   ],
+   "mx_ips": {
+    "mx37.m1bp.com": [
+     "147.182.160.18",
+     "164.90.197.143",
+     "147.182.180.139",
+     "147.182.189.184",
+     "147.182.130.78",
+     "164.90.197.79",
+     "164.90.197.162",
+     "164.90.197.105"
+    ],
+    "mx37.mb5p.com": [
+     "164.90.197.105",
+     "164.90.197.143",
+     "147.182.160.18",
+     "164.90.197.162",
+     "164.90.197.79",
+     "147.182.189.184",
+     "147.182.130.78",
+     "147.182.180.139"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "maildrop.cc": {
+   "domain": "maildrop.cc",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx.maildrop.cc."
+   ],
+   "mx_hosts": [
+    "mx.maildrop.cc"
+   ],
+   "mx_ips": {
+    "mx.maildrop.cc": [
+     "213.239.209.163"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "maildy.site": {
+   "domain": "maildy.site",
+   "fact": "dns_error",
+   "mx": [],
+   "mx_rcode": "error"
+  },
+  "mailfree.ml": {
+   "domain": "mailfree.ml",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "mailinator.com": {
+   "domain": "mailinator.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mail.mailinator.com.",
+    "1 mail2.mailinator.com."
+   ],
+   "mx_hosts": [
+    "mail.mailinator.com",
+    "mail2.mailinator.com"
+   ],
+   "mx_ips": {
+    "mail.mailinator.com": [
+     "23.239.11.30"
+    ],
+    "mail2.mailinator.com": [
+     "45.33.83.75"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mailnator.com": {
+   "domain": "mailnator.com",
+   "fact": "no_mail_host",
+   "implicit_mx": false,
+   "mx": [
+    "300 ~."
+   ],
+   "mx_ips": {
+    "~": []
+   },
+   "mx_rcode": 0
+  },
+  "mailtothis.com": {
+   "domain": "mailtothis.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.mailinator.com."
+   ],
+   "mx_hosts": [
+    "mail.mailinator.com"
+   ],
+   "mx_ips": {
+    "mail.mailinator.com": [
+     "23.239.11.30"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "maintenancejaddaf.xyz": {
+   "domain": "maintenancejaddaf.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 mail.maintenancejaddaf.xyz."
+   ],
+   "mx_hosts": [
+    "mail.maintenancejaddaf.xyz"
+   ],
+   "mx_ips": {
+    "mail.maintenancejaddaf.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "maintsportshub.xyz": {
+   "domain": "maintsportshub.xyz",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 mail.maintsportshub.xyz."
+   ],
+   "mx_hosts": [
+    "mail.maintsportshub.xyz"
+   ],
+   "mx_ips": {
+    "mail.maintsportshub.xyz": [
+     "185.99.254.19"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mlumzmh.cn": {
+   "domain": "mlumzmh.cn",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 generator.email."
+   ],
+   "mx_hosts": [
+    "generator.email"
+   ],
+   "mx_ips": {
+    "generator.email": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mooo.com": {
+   "domain": "mooo.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.afraid.org."
+   ],
+   "mx_hosts": [
+    "mail.afraid.org"
+   ],
+   "mx_ips": {
+    "mail.afraid.org": [
+     "216.219.92.88"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "msn-mail-free-9597.dynv6.net": {
+   "domain": "msn-mail-free-9597.dynv6.net",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 email.chatgpt.org.uk."
+   ],
+   "mx_hosts": [
+    "email.chatgpt.org.uk"
+   ],
+   "mx_ips": {
+    "email.chatgpt.org.uk": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "mtmdev.com": {
+   "domain": "mtmdev.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.mailinator.com."
+   ],
+   "mx_hosts": [
+    "mail.mailinator.com"
+   ],
+   "mx_ips": {
+    "mail.mailinator.com": [
+     "23.239.11.30"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "natuanal.com": {
+   "domain": "natuanal.com",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "nexentia.cfd": {
+   "domain": "nexentia.cfd",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "ooyv.homes": {
+   "domain": "ooyv.homes",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "ooyv.homes": [
+     "43.134.226.173"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "oupul8b1k.cyou": {
+   "domain": "oupul8b1k.cyou",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 email.chatgpt.org.uk."
+   ],
+   "mx_hosts": [
+    "email.chatgpt.org.uk"
+   ],
+   "mx_ips": {
+    "email.chatgpt.org.uk": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "outllok.com": {
+   "domain": "outllok.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mail.mailerhost.net."
+   ],
+   "mx_hosts": [
+    "mail.mailerhost.net"
+   ],
+   "mx_ips": {
+    "mail.mailerhost.net": [
+     "5.161.133.13",
+     "161.35.84.83"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "outlok.com": {
+   "domain": "outlok.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "outlok.com": [
+     "45.79.167.180",
+     "96.126.111.165",
+     "45.33.83.100",
+     "66.175.209.179",
+     "2600:3c03::f03c:95ff:fe00:29ca",
+     "2600:3c03::f03c:95ff:fe91:5d52",
+     "2600:3c03::f03c:95ff:feed:4d4f",
+     "2600:3c03::f03c:95ff:feed:cf2a"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "outlook.com": {
+   "domain": "outlook.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 outlook-com.olc.protection.outlook.com."
+   ],
+   "mx_hosts": [
+    "outlook-com.olc.protection.outlook.com"
+   ],
+   "mx_ips": {
+    "outlook-com.olc.protection.outlook.com": [
+     "52.101.194.5",
+     "52.101.40.101",
+     "52.101.41.184",
+     "52.101.194.171"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "pixelcroft.org": {
+   "domain": "pixelcroft.org",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 email.gravityengine.cc."
+   ],
+   "mx_hosts": [
+    "email.gravityengine.cc"
+   ],
+   "mx_ips": {
+    "email.gravityengine.cc": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "protonmail.com": {
+   "domain": "protonmail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "5 mail.protonmail.ch.",
+    "10 mailsec.protonmail.ch."
+   ],
+   "mx_hosts": [
+    "mail.protonmail.ch",
+    "mailsec.protonmail.ch"
+   ],
+   "mx_ips": {
+    "mail.protonmail.ch": [
+     "185.205.70.128",
+     "176.119.200.128",
+     "185.70.42.128"
+    ],
+    "mailsec.protonmail.ch": [
+     "176.119.200.129",
+     "185.70.42.129",
+     "185.205.70.129"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "protonmial.com": {
+   "domain": "protonmial.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "protonmial.com": [
+     "216.245.197.44"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "punchbagartgallery.org.uk": {
+   "domain": "punchbagartgallery.org.uk",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-60.example": {
+   "domain": "qa-60.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-61.example": {
+   "domain": "qa-61.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-62.example": {
+   "domain": "qa-62.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-63.example": {
+   "domain": "qa-63.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-64.example": {
+   "domain": "qa-64.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-65.example": {
+   "domain": "qa-65.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-66.example": {
+   "domain": "qa-66.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-67.example": {
+   "domain": "qa-67.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-68.example": {
+   "domain": "qa-68.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-69.example": {
+   "domain": "qa-69.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-70.example": {
+   "domain": "qa-70.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-71.example": {
+   "domain": "qa-71.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-72.example": {
+   "domain": "qa-72.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-73.example": {
+   "domain": "qa-73.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-74.example": {
+   "domain": "qa-74.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-75.example": {
+   "domain": "qa-75.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-76.example": {
+   "domain": "qa-76.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-77.example": {
+   "domain": "qa-77.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-78.example": {
+   "domain": "qa-78.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "qa-79.example": {
+   "domain": "qa-79.example",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "reverendneedham.co.uk": {
+   "domain": "reverendneedham.co.uk",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "rteet.com": {
+   "domain": "rteet.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mx4.beavis99.net.",
+    "10 mx4.beavis99.com."
+   ],
+   "mx_hosts": [
+    "mx4.beavis99.net",
+    "mx4.beavis99.com"
+   ],
+   "mx_ips": {
+    "mx4.beavis99.com": [
+     "195.201.18.63"
+    ],
+    "mx4.beavis99.net": [
+     "188.245.74.208"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "sendnow.win": {
+   "domain": "sendnow.win",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 recv300.erinn.biz.",
+    "10 recv301.erinn.biz.",
+    "10 recv302.erinn.biz.",
+    "10 recv303.erinn.biz.",
+    "10 recv304.erinn.biz.",
+    "10 recv305.erinn.biz.",
+    "10 recv306.erinn.biz."
+   ],
+   "mx_hosts": [
+    "recv300.erinn.biz",
+    "recv301.erinn.biz",
+    "recv302.erinn.biz",
+    "recv303.erinn.biz",
+    "recv304.erinn.biz",
+    "recv305.erinn.biz",
+    "recv306.erinn.biz"
+   ],
+   "mx_ips": {
+    "recv300.erinn.biz": [
+     "160.251.81.146"
+    ],
+    "recv301.erinn.biz": [
+     "133.130.102.153"
+    ],
+    "recv302.erinn.biz": [
+     "160.251.107.128"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "sharklasers.com": {
+   "domain": "sharklasers.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 mail.guerrillamail.com."
+   ],
+   "mx_hosts": [
+    "mail.guerrillamail.com"
+   ],
+   "mx_ips": {
+    "mail.guerrillamail.com": [
+     "178.162.170.166"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "shippingterms.org": {
+   "domain": "shippingterms.org",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.casadorock.com."
+   ],
+   "mx_hosts": [
+    "mail.casadorock.com"
+   ],
+   "mx_ips": {
+    "mail.casadorock.com": [
+     "5.78.44.170",
+     "2a01:4ff:1f0:cf09::2"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "shortmail.net": {
+   "domain": "shortmail.net",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 eforward1.registrar-servers.com.",
+    "10 eforward2.registrar-servers.com.",
+    "10 eforward3.registrar-servers.com.",
+    "15 eforward4.registrar-servers.com.",
+    "20 eforward5.registrar-servers.com."
+   ],
+   "mx_hosts": [
+    "eforward1.registrar-servers.com",
+    "eforward2.registrar-servers.com",
+    "eforward3.registrar-servers.com",
+    "eforward4.registrar-servers.com",
+    "eforward5.registrar-servers.com"
+   ],
+   "mx_ips": {
+    "eforward1.registrar-servers.com": [
+     "162.255.118.51"
+    ],
+    "eforward2.registrar-servers.com": [
+     "162.255.118.52"
+    ],
+    "eforward3.registrar-servers.com": [
+     "162.255.118.51"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "sidelka-mytischi.ru": {
+   "domain": "sidelka-mytischi.ru",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "slyouthuk.org": {
+   "domain": "slyouthuk.org",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "spamwc.cf": {
+   "domain": "spamwc.cf",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "spiedemtion.store": {
+   "domain": "spiedemtion.store",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 tinyhost.shop."
+   ],
+   "mx_hosts": [
+    "tinyhost.shop"
+   ],
+   "mx_ips": {
+    "tinyhost.shop": [
+     "144.91.107.45"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "spinly.net": {
+   "domain": "spinly.net",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.spinly.net."
+   ],
+   "mx_hosts": [
+    "mail.spinly.net"
+   ],
+   "mx_ips": {
+    "mail.spinly.net": [
+     "178.104.153.118"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "srzi.makeup": {
+   "domain": "srzi.makeup",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mail.srzi.makeup."
+   ],
+   "mx_hosts": [
+    "mail.srzi.makeup"
+   ],
+   "mx_ips": {
+    "mail.srzi.makeup": [
+     "38.76.200.12"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "storiesonthestreet.org": {
+   "domain": "storiesonthestreet.org",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "studio.jo3.org": {
+   "domain": "studio.jo3.org",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 tinyhost.shop."
+   ],
+   "mx_hosts": [
+    "tinyhost.shop"
+   ],
+   "mx_ips": {
+    "tinyhost.shop": [
+     "144.91.107.45"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "tempmail.plus": {
+   "domain": "tempmail.plus",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mx.imena.ua."
+   ],
+   "mx_hosts": [
+    "mx.imena.ua"
+   ],
+   "mx_ips": {
+    "mx.imena.ua": [
+     "78.27.225.12"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "tgduck.com": {
+   "domain": "tgduck.com",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "thichanthit.com": {
+   "domain": "thichanthit.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 em4.catchservers.com.",
+    "10 mx4.catchservers.net."
+   ],
+   "mx_hosts": [
+    "em4.catchservers.com",
+    "mx4.catchservers.net"
+   ],
+   "mx_ips": {
+    "em4.catchservers.com": [
+     "137.184.154.224"
+    ],
+    "mx4.catchservers.net": [
+     "165.22.201.68"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "timgiarevn.com": {
+   "domain": "timgiarevn.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.casadorock.com."
+   ],
+   "mx_hosts": [
+    "mail.casadorock.com"
+   ],
+   "mx_ips": {
+    "mail.casadorock.com": [
+     "5.78.44.170",
+     "2a01:4ff:1f0:cf09::2"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "transaksikita.tech": {
+   "domain": "transaksikita.tech",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 generator.email."
+   ],
+   "mx_hosts": [
+    "generator.email"
+   ],
+   "mx_ips": {
+    "generator.email": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "trashmail.com": {
+   "domain": "trashmail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 smtp.trashmail.com."
+   ],
+   "mx_hosts": [
+    "smtp.trashmail.com"
+   ],
+   "mx_ips": {
+    "smtp.trashmail.com": [
+     "157.90.89.149"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "trashmail.io": {
+   "domain": "trashmail.io",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 smtp.trashmail.com."
+   ],
+   "mx_hosts": [
+    "smtp.trashmail.com"
+   ],
+   "mx_ips": {
+    "smtp.trashmail.com": [
+     "157.90.89.149"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "tulw6ae.ooguy.com": {
+   "domain": "tulw6ae.ooguy.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 vietxf.com."
+   ],
+   "mx_hosts": [
+    "vietxf.com"
+   ],
+   "mx_ips": {
+    "vietxf.com": [
+     "13.140.134.192"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "ultrafive.online": {
+   "domain": "ultrafive.online",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "11 route3.mx.cloudflare.net.",
+    "78 route1.mx.cloudflare.net.",
+    "93 route2.mx.cloudflare.net."
+   ],
+   "mx_hosts": [
+    "route3.mx.cloudflare.net",
+    "route1.mx.cloudflare.net",
+    "route2.mx.cloudflare.net"
+   ],
+   "mx_ips": {
+    "route1.mx.cloudflare.net": [
+     "162.159.205.13",
+     "162.159.205.11",
+     "162.159.205.12",
+     "2606:4700:f5::c",
+     "2606:4700:f5::d",
+     "2606:4700:f5::b"
+    ],
+    "route2.mx.cloudflare.net": [
+     "162.159.205.18",
+     "162.159.205.19",
+     "162.159.205.17",
+     "2606:4700:f5::e",
+     "2606:4700:f5::f",
+     "2606:4700:f5::10"
+    ],
+    "route3.mx.cloudflare.net": [
+     "162.159.205.25",
+     "162.159.205.23",
+     "162.159.205.24",
+     "2606:4700:f5::12",
+     "2606:4700:f5::13",
+     "2606:4700:f5::11"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "uma3.be": {
+   "domain": "uma3.be",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 recv300.erinn.biz.",
+    "10 recv301.erinn.biz.",
+    "10 recv302.erinn.biz.",
+    "10 recv303.erinn.biz.",
+    "10 recv304.erinn.biz.",
+    "10 recv305.erinn.biz.",
+    "10 recv306.erinn.biz."
+   ],
+   "mx_hosts": [
+    "recv300.erinn.biz",
+    "recv301.erinn.biz",
+    "recv302.erinn.biz",
+    "recv303.erinn.biz",
+    "recv304.erinn.biz",
+    "recv305.erinn.biz",
+    "recv306.erinn.biz"
+   ],
+   "mx_ips": {
+    "recv300.erinn.biz": [
+     "160.251.81.146"
+    ],
+    "recv301.erinn.biz": [
+     "133.130.102.153"
+    ],
+    "recv302.erinn.biz": [
+     "160.251.107.128"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "usefulbriefing.com": {
+   "domain": "usefulbriefing.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "0 emailfake.com."
+   ],
+   "mx_hosts": [
+    "emailfake.com"
+   ],
+   "mx_ips": {
+    "emailfake.com": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "uu2.ovh": {
+   "domain": "uu2.ovh",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "vqdz.skin": {
+   "domain": "vqdz.skin",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "vqdz.skin": [
+     "43.134.226.173"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "w3internet.co.uk": {
+   "domain": "w3internet.co.uk",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx.stackmail.com."
+   ],
+   "mx_hosts": [
+    "mx.stackmail.com"
+   ],
+   "mx_ips": {
+    "mx.stackmail.com": [
+     "185.151.28.67"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "waroengku.cc": {
+   "domain": "waroengku.cc",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 generator.email."
+   ],
+   "mx_hosts": [
+    "generator.email"
+   ],
+   "mx_ips": {
+    "generator.email": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "xazymarcie.space": {
+   "domain": "xazymarcie.space",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 generator.email."
+   ],
+   "mx_hosts": [
+    "generator.email"
+   ],
+   "mx_ips": {
+    "generator.email": [
+     "91.196.52.205"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "xn--bcher-kva.de": {
+   "domain": "xn--bcher-kva.de",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "xn--bcher-kva.de": [
+     "172.67.146.137",
+     "104.21.33.153",
+     "2606:4700:3033::6815:2199",
+     "2606:4700:3036::ac43:9289"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "yaho.com": {
+   "domain": "yaho.com",
+   "fact": "ok",
+   "implicit_mx": true,
+   "mx": [],
+   "mx_hosts": [],
+   "mx_ips": {
+    "yaho.com": [
+     "13.248.158.7",
+     "76.223.84.192"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "yahoo.com": {
+   "domain": "yahoo.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 mta5.am0.yahoodns.net.",
+    "1 mta6.am0.yahoodns.net.",
+    "1 mta7.am0.yahoodns.net."
+   ],
+   "mx_hosts": [
+    "mta5.am0.yahoodns.net",
+    "mta6.am0.yahoodns.net",
+    "mta7.am0.yahoodns.net"
+   ],
+   "mx_ips": {
+    "mta5.am0.yahoodns.net": [
+     "67.195.204.77",
+     "67.195.228.110",
+     "67.195.228.106",
+     "67.195.228.109",
+     "67.195.204.74",
+     "98.136.96.74",
+     "67.195.228.111",
+     "67.195.204.72"
+    ],
+    "mta6.am0.yahoodns.net": [
+     "67.195.228.110",
+     "67.195.204.79",
+     "67.195.204.77",
+     "98.136.96.74",
+     "67.195.228.94",
+     "67.195.204.73",
+     "98.136.96.77",
+     "67.195.204.74"
+    ],
+    "mta7.am0.yahoodns.net": [
+     "67.195.228.111",
+     "67.195.204.73",
+     "67.195.204.72",
+     "98.136.96.75",
+     "67.195.228.106",
+     "98.136.96.74",
+     "67.195.228.94",
+     "67.195.204.74"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "yahoo.con": {
+   "domain": "yahoo.con",
+   "fact": "nxdomain",
+   "mx": [],
+   "mx_rcode": 3
+  },
+  "yahooo.com": {
+   "domain": "yahooo.com",
+   "fact": "null_mx",
+   "mx": [
+    "0 ."
+   ],
+   "mx_rcode": 0
+  },
+  "yandex.com": {
+   "domain": "yandex.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mx.yandex.ru."
+   ],
+   "mx_hosts": [
+    "mx.yandex.ru"
+   ],
+   "mx_ips": {
+    "mx.yandex.ru": [
+     "77.88.21.249",
+     "2a02:6b8::311"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "yanxuan.eu.cc": {
+   "domain": "yanxuan.eu.cc",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 email.gravityengine.cc."
+   ],
+   "mx_hosts": [
+    "email.gravityengine.cc"
+   ],
+   "mx_ips": {
+    "email.gravityengine.cc": [
+     "158.101.127.66"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "yopmail.com": {
+   "domain": "yopmail.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "1 smtp.yopmail.com."
+   ],
+   "mx_hosts": [
+    "smtp.yopmail.com"
+   ],
+   "mx_ips": {
+    "smtp.yopmail.com": [
+     "87.98.164.155"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "youtube-com-watch-jtpdc8khnpi.gleeze.com": {
+   "domain": "youtube-com-watch-jtpdc8khnpi.gleeze.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 tinyhost.shop."
+   ],
+   "mx_hosts": [
+    "tinyhost.shop"
+   ],
+   "mx_ips": {
+    "tinyhost.shop": [
+     "144.91.107.45"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "yugasandrika.com": {
+   "domain": "yugasandrika.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 mail.casadorock.com."
+   ],
+   "mx_hosts": [
+    "mail.casadorock.com"
+   ],
+   "mx_ips": {
+    "mail.casadorock.com": [
+     "5.78.44.170",
+     "2a01:4ff:1f0:cf09::2"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "zensurpirat.de": {
+   "domain": "zensurpirat.de",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 vietxf.com."
+   ],
+   "mx_hosts": [
+    "vietxf.com"
+   ],
+   "mx_ips": {
+    "vietxf.com": [
+     "13.140.134.192"
+    ]
+   },
+   "mx_rcode": 0
+  },
+  "zoho.com": {
+   "domain": "zoho.com",
+   "fact": "ok",
+   "implicit_mx": false,
+   "mx": [
+    "10 smtpin.zoho.com.",
+    "50 smtpin3.zoho.com.",
+    "20 smtpin2.zoho.com."
+   ],
+   "mx_hosts": [
+    "smtpin.zoho.com",
+    "smtpin2.zoho.com",
+    "smtpin3.zoho.com"
+   ],
+   "mx_ips": {
+    "smtpin.zoho.com": [
+     "136.143.191.23"
+    ],
+    "smtpin2.zoho.com": [
+     "136.143.191.23"
+    ],
+    "smtpin3.zoho.com": [
+     "136.143.191.23"
+    ]
+   },
+   "mx_rcode": 0
+  }
+ },
+ "source": "DNS-over-HTTPS (cloudflare-dns.com, fallback dns.google)"
+}

@@ -1,0 +1,46 @@
+{
+ "syntax": {
+  "tested": 1000,
+  "pass": 1000,
+  "fail": 0,
+  "failures": [],
+  "seconds": 0.039
+ },
+ "dataset: disposable (list)": {
+  "tested": 780,
+  "pass": 780,
+  "fail": 0,
+  "failures": []
+ },
+ "dataset: free provider": {
+  "tested": 780,
+  "pass": 780,
+  "fail": 0,
+  "failures": []
+ },
+ "dataset: role-based": {
+  "tested": 780,
+  "pass": 780,
+  "fail": 0,
+  "failures": []
+ },
+ "dataset: typo suggestion": {
+  "tested": 780,
+  "pass": 780,
+  "fail": 0,
+  "failures": []
+ },
+ "dns: domain status vs oracle": {
+  "tested": 177,
+  "pass": 177,
+  "fail": 0,
+  "failures": [],
+  "seconds": 9.09
+ },
+ "dns: top-3 MX hosts vs oracle": {
+  "tested": 113,
+  "pass": 113,
+  "fail": 0,
+  "failures": []
+ }
+}

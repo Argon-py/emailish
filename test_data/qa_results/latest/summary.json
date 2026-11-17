@@ -1,0 +1,450 @@
+{
+ "started_at": "2026-11-17T13:52:01+00:00",
+ "health": {
+  "dns_backend": "DNS-over-HTTPS: system resolver failed self-test (MX lookup for gmail.com returned nodata )",
+  "smtp_enabled": false,
+  "smtp_available": false,
+  "smtp_note": "SMTP checks disabled by configuration",
+  "helo_host": "localhost.localdomain",
+  "mail_from": "verify@localhost.localdomain",
+  "warnings": []
+ },
+ "records": {
+  "pass": 1000,
+  "unknown_results": 362
+ },
+ "by_category": {
+  "disposable": {
+   "PASS": 120,
+   "total": 120
+  },
+  "duplicate": {
+   "PASS": 100,
+   "total": 100
+  },
+  "empty": {
+   "PASS": 40,
+   "total": 40
+  },
+  "invalid_syntax": {
+   "PASS": 120,
+   "total": 120
+  },
+  "nonexistent_domain": {
+   "PASS": 3,
+   "total": 3
+  },
+  "reserved_domain_null_mx": {
+   "PASS": 60,
+   "total": 60
+  },
+  "reserved_tld": {
+   "PASS": 80,
+   "total": 80
+  },
+  "role_based": {
+   "PASS": 90,
+   "total": 90
+  },
+  "typo_domain": {
+   "PASS": 90,
+   "total": 90
+  },
+  "valid_syntax_free_provider": {
+   "PASS": 200,
+   "total": 200
+  },
+  "valid_syntax_other": {
+   "PASS": 37,
+   "total": 37
+  },
+  "whitespace": {
+   "PASS": 60,
+   "total": 60
+  }
+ },
+ "by_expectation_type": {
+  "DETERMINISTIC_DNS": {
+   "PASS": 423,
+   "total": 423
+  },
+  "DETERMINISTIC_OFFLINE": {
+   "PASS": 220,
+   "total": 220
+  },
+  "REQUIRES_SMTP_EVIDENCE": {
+   "PASS": 357,
+   "total": 357
+  }
+ },
+ "got_status_counts": {
+  "UNKNOWN": 362,
+  "RISKY": 45,
+  "INVALID": 470,
+  "DISPOSABLE": 123
+ },
+ "expected_status_counts": {
+  "UNKNOWN": 362,
+  "RISKY": 45,
+  "INVALID": 470,
+  "DISPOSABLE": 123
+ },
+ "timing": {
+  "csv": {
+   "rows": 1000,
+   "unique": 748,
+   "upload_s": 0.04,
+   "verify_s": 10.27,
+   "download_s": 0.01,
+   "polls": 186
+  },
+  "xlsx": {
+   "rows": 1000,
+   "unique": 748,
+   "upload_s": 0.139,
+   "verify_s": 0.886,
+   "download_s": 0.005,
+   "polls": 8
+  },
+  "manual": {
+   "rows": 30,
+   "unique": 30,
+   "upload_s": 0.007,
+   "verify_s": 0.11,
+   "download_s": 0.004,
+   "polls": 3
+  }
+ },
+ "progress_samples_csv_job": [
+  [
+   0.023,
+   "running",
+   "reading file",
+   0,
+   0
+  ],
+  [
+   1.178,
+   "running",
+   "verifying",
+   238,
+   748
+  ],
+  [
+   1.973,
+   "running",
+   "verifying",
+   353,
+   748
+  ],
+  [
+   2.761,
+   "running",
+   "verifying",
+   531,
+   748
+  ],
+  [
+   3.553,
+   "running",
+   "verifying",
+   612,
+   748
+  ],
+  [
+   4.354,
+   "running",
+   "verifying",
+   637,
+   748
+  ],
+  [
+   5.145,
+   "running",
+   "verifying",
+   663,
+   748
+  ],
+  [
+   5.937,
+   "running",
+   "verifying",
+   674,
+   748
+  ],
+  [
+   6.732,
+   "running",
+   "verifying",
+   697,
+   748
+  ],
+  [
+   7.524,
+   "running",
+   "verifying",
+   715,
+   748
+  ],
+  [
+   8.318,
+   "running",
+   "verifying",
+   738,
+   748
+  ],
+  [
+   9.109,
+   "running",
+   "verifying",
+   745,
+   748
+  ],
+  [
+   9.907,
+   "running",
+   "writing results",
+   748,
+   748
+  ]
+ ],
+ "checks": [
+  {
+   "check": "server: SMTP checks disabled for this run",
+   "result": "PASS",
+   "detail": "SMTP checks disabled by configuration"
+  },
+  {
+   "check": "CSV upload accepted, 1000 rows",
+   "result": "PASS",
+   "detail": "1000"
+  },
+  {
+   "check": "automatic email column detection (CSV) -> 'Email Address'",
+   "result": "PASS",
+   "detail": "Email Address"
+  },
+  {
+   "check": "CSV job finished",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "progress: 'done' counter never decreases",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "progress: final done == unique_emails",
+   "result": "PASS",
+   "detail": "748 / 748"
+  },
+  {
+   "check": "progress: intermediate states observed (queued/running before done)",
+   "result": "PASS",
+   "detail": "186 polls, phases ['done', 'reading file', 'syntax', 'verifying', 'writing results']"
+  },
+  {
+   "check": "CSV job: CSV export downloads (HTTP 200, text/csv)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "CSV job: CSV header = original columns (same order) + 18 result columns",
+   "result": "PASS",
+   "detail": "got ['Record ID', 'First Name', 'Last Name']...['mx_host', 'mail_provider', 'smtp_code']"
+  },
+  {
+   "check": "CSV job: CSV row count equals input",
+   "result": "PASS",
+   "detail": "1000 vs 1000"
+  },
+  {
+   "check": "CSV job: CSV preserves every original cell exactly",
+   "result": "PASS",
+   "detail": "0 differing cells"
+  },
+  {
+   "check": "CSV job: every CSV row has an email_status",
+   "result": "PASS",
+   "detail": "0 missing"
+  },
+  {
+   "check": "CSV job: XLSX export downloads (HTTP 200)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "CSV job: XLSX header identical to CSV header",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "CSV job: XLSX row count equals input",
+   "result": "PASS",
+   "detail": "1000"
+  },
+  {
+   "check": "CSV job: XLSX content identical to CSV content",
+   "result": "PASS",
+   "detail": "0 differing cells"
+  },
+  {
+   "check": "CSV job: XLSX stores all values as text (no formulas/numbers)",
+   "result": "PASS",
+   "detail": "{'s': 23685}"
+  },
+  {
+   "check": "CSV job: leading zeros preserved in 'Zip' (CSV and XLSX)",
+   "result": "PASS",
+   "detail": "input 539, csv 539, xlsx 539"
+  },
+  {
+   "check": "CSV job: leading zeros preserved in 'Customer No' (CSV and XLSX)",
+   "result": "PASS",
+   "detail": "input 1000, csv 1000, xlsx 1000"
+  },
+  {
+   "check": "invariant: no VALID result without SMTP evidence",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "invariant: no ROLE_BASED / CATCH_ALL without SMTP evidence",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "invariant: smtp_status is not_checked for every row",
+   "result": "PASS",
+   "detail": "{'not_checked'}"
+  },
+  {
+   "check": "invariant: every UNKNOWN has confidence 0 and certainty UNCERTAIN",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "invariant: every row has a verification_reason and verified_at",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "duplicates: each variant got exactly the original's result",
+   "result": "PASS",
+   "detail": "0 differ: []"
+  },
+  {
+   "check": "duplicates: unique addresses verified once (job.unique_emails == independent count)",
+   "result": "PASS",
+   "detail": "job 748, expected 748"
+  },
+  {
+   "check": "XLSX upload accepted, 1000 rows",
+   "result": "PASS",
+   "detail": "1000"
+  },
+  {
+   "check": "automatic email column detection (XLSX) -> 'Email Address'",
+   "result": "PASS",
+   "detail": "Email Address"
+  },
+  {
+   "check": "XLSX job finished",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "XLSX job: CSV export downloads (HTTP 200, text/csv)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "XLSX job: CSV header = original columns (same order) + 18 result columns",
+   "result": "PASS",
+   "detail": "got ['Record ID', 'First Name', 'Last Name']...['mx_host', 'mail_provider', 'smtp_code']"
+  },
+  {
+   "check": "XLSX job: CSV row count equals input",
+   "result": "PASS",
+   "detail": "1000 vs 1000"
+  },
+  {
+   "check": "XLSX job: CSV preserves every original cell exactly",
+   "result": "PASS",
+   "detail": "0 differing cells"
+  },
+  {
+   "check": "XLSX job: every CSV row has an email_status",
+   "result": "PASS",
+   "detail": "0 missing"
+  },
+  {
+   "check": "XLSX job: XLSX export downloads (HTTP 200)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "XLSX job: XLSX header identical to CSV header",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "XLSX job: XLSX row count equals input",
+   "result": "PASS",
+   "detail": "1000"
+  },
+  {
+   "check": "XLSX job: XLSX content identical to CSV content",
+   "result": "PASS",
+   "detail": "0 differing cells"
+  },
+  {
+   "check": "XLSX job: XLSX stores all values as text (no formulas/numbers)",
+   "result": "PASS",
+   "detail": "{'s': 23685}"
+  },
+  {
+   "check": "XLSX job: leading zeros preserved in 'Zip' (CSV and XLSX)",
+   "result": "PASS",
+   "detail": "input 539, csv 539, xlsx 539"
+  },
+  {
+   "check": "XLSX job: leading zeros preserved in 'Customer No' (CSV and XLSX)",
+   "result": "PASS",
+   "detail": "input 1000, csv 1000, xlsx 1000"
+  },
+  {
+   "check": "XLSX input produces the same results as CSV input",
+   "result": "PASS",
+   "detail": "0 rows differ []"
+  },
+  {
+   "check": "manual selection: rejecting a column that does not exist (HTTP 400)",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "manual selection: auto-detect proposed 'Email', user chose 'Backup Email'",
+   "result": "PASS",
+   "detail": "detected Email"
+  },
+  {
+   "check": "manual selection: the chosen column was verified (all example.com -> INVALID Null MX)",
+   "result": "PASS",
+   "detail": "{('INVALID', 'does_not_accept_mail'): 30}"
+  },
+  {
+   "check": "history: all three jobs listed as done",
+   "result": "PASS",
+   "detail": ""
+  },
+  {
+   "check": "history: stored summary matches the exported file",
+   "result": "PASS",
+   "detail": "{'UNKNOWN': 362, 'RISKY': 45, 'INVALID': 470, 'DISPOSABLE': 123}"
+  }
+ ],
+ "checks_passed": 47,
+ "checks_failed": 0
+}

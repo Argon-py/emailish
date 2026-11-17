@@ -146,3 +146,45 @@ def test_dns_partial_unroutable_is_ok():
                      ("mx1.a.com", "A"): DnsAnswer(OK, ["10.0.0.5"]), ("mx1.a.com", "AAAA"): DnsAnswer(NODATA),
                      ("mx2.a.com", "A"): DnsAnswer(OK, ["93.184.216.34"]), ("mx2.a.com", "AAAA"): DnsAnswer(NODATA)})
     assert run(analyze_domain(b, "a.com")).status == "ok"
+
+
+# --- regressions found by the QA round (research/FAILED_TESTS.md) ----------------
+@pytest.mark.parametrize("raw", ["x@gmail.com​", "​x@gmail.com", " ​ x@gmail.com ﻿ ",
+                                 "⁠x@gmail.com", "mailto:​x@gmail.com", " x@gmail.com "])
+def test_invisible_edge_characters_are_trimmed(raw):
+    r = check_syntax(raw)
+    assert r.ok and r.normalized == "x@gmail.com"
+
+
+def test_invisible_character_inside_address_is_still_invalid():
+    assert not check_syntax("x​y@gmail.com").ok
+
+
+@pytest.mark.parametrize("raw,empty", [("", True), ("   ", True), ("\t", True), ("​", True),
+                                       ("mailto:", False), ("<>", False), ('""', False)])
+def test_empty_means_blank_cell(raw, empty):
+    from app.engine.syntax import is_blank
+    r = check_syntax(raw)
+    assert not r.ok and is_blank(raw) is empty
+
+
+def test_forced_system_resolver_that_drops_mx_is_flagged(monkeypatch):
+    """QA finding: EMAILISH_DNS_MODE=system on a resolver that returns no MX data used to be silent."""
+    from app.engine import dnslayer
+
+    class BrokenResolver:
+        name = "system"
+
+        async def query(self, name, rtype):
+            return DnsAnswer(NODATA) if rtype == "MX" else DnsAnswer(OK, ["192.0.2.1"])
+
+    monkeypatch.setattr(dnslayer, "SystemBackend", BrokenResolver)
+    backend, note = run(dnslayer.pick_backend("system"))
+    assert note.startswith("WARNING") and "self-test" in note
+
+    from app.config import Settings
+    from app.engine.verifier import Verifier
+    monkeypatch.setattr("app.engine.verifier.pick_backend", dnslayer.pick_backend)
+    v = Verifier(Settings(dns_mode="system", smtp_enabled=False))
+    st = run(v.init())
+    assert any("self-test" in w for w in st.warnings)

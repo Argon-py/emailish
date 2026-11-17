@@ -1,5 +1,8 @@
 # Test and Benchmark Results (actual, 2026-11-17)
 
+> The later structured QA round (1,000 synthetic records, SMTP disabled, 7 issues fixed) is in
+> [`QA_REPORT.md`](QA_REPORT.md). The test count is now 141.
+
 Environment: cloud container, Python 3.13. **Outbound TCP/25 is blocked** (connection
 refused to Google MX). The system DNS resolver answered only A queries, so emailish
 switched itself to DNS-over-HTTPS after its MX self-test failed.
