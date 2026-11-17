@@ -17,6 +17,18 @@ in [`research/`](research/).
 
 Open http://127.0.0.1:8000. The first run creates `.venv` and installs the dependencies.
 
+**Windows (PowerShell or cmd):** `run.sh` does not work on Windows; use `run.bat`:
+
+```powershell
+.\run.bat              # SMTP mailbox checks on
+.\run.bat --no-smtp    # SMTP mailbox checks off
+```
+
+Requires Python 3.10+ from python.org ("Add python.exe to PATH" ticked). In PowerShell,
+environment variables are set with `$env:NAME = "value"` on a separate line (for example
+`$env:EMAILISH_HELO_HOST = "verify.yourdomain.com"`), not with the `NAME=value command`
+form used on Linux and macOS.
+
 Or with Docker:
 
 ```bash
