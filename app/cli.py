@@ -3,6 +3,7 @@
   python -m app.cli check someone@example.com other@example.org
   python -m app.cli file contacts.xlsx [--column Email] [--out results]
   python -m app.cli health
+  python -m app.cli diagnose [--domain yourdomain.com] [--target host] [--no-public-ip]
 """
 from __future__ import annotations
 
@@ -68,7 +69,14 @@ def main(argv=None) -> int:
     f.add_argument("--column")
     f.add_argument("--out", type=Path)
     sub.add_parser("health")
+    d = sub.add_parser("diagnose", help="can this machine run SMTP diagnostics? (sends no MAIL/RCPT/DATA)")
+    d.add_argument("--domain", help="your own domain: test its mail server (banner + EHLO only)")
+    d.add_argument("--target", help="host to test port 25 against (default: neutral portquiz.net)")
+    d.add_argument("--no-public-ip", action="store_true", help="skip public IP / reverse DNS check")
     a = ap.parse_args(argv)
+    if a.cmd == "diagnose":
+        from .diagnose import diagnose
+        return asyncio.run(diagnose(a.domain, a.target, not a.no_public_ip))
     if a.cmd == "check":
         return asyncio.run(_check(a.emails))
     if a.cmd == "file":

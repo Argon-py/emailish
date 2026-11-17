@@ -1,5 +1,7 @@
 email,expected,note
 # Copy to controlled_addresses.csv and replace with addresses YOU control or know the truth about.
+# Use ONLY addresses on domains you control, or mailboxes you personally own. Never add
+# made-up addresses at Gmail/Outlook/other providers: that probes someone else's mailbox.
 # Lines starting with # are ignored. expected: VALID / INVALID / CATCH_ALL / DISPOSABLE / ROLE_BASED / RISKY
 real.person@your-company.com,VALID,existing mailbox on your own domain (not catch-all)
 info@your-company.com,ROLE_BASED,existing role mailbox on your own domain
@@ -7,7 +9,6 @@ no-such-user-7f3a@your-company.com,INVALID,guaranteed not to exist on your own (
 anything-9q2w@your-catchall-domain.com,CATCH_ALL,a domain you configured to accept all mail
 real.mailbox@your-catchall-domain.com,CATCH_ALL,real mailbox on the catch-all domain (truth: deliverable)
 your.own.address@gmail.com,VALID,a Gmail account you own
-zz-does-not-exist-81k2@gmail.com,INVALID,Gmail rejects unknown users with 5.1.1
 your.own.address@outlook.com,VALID,an Outlook.com account you own
 benchmark-test@mailinator.com,DISPOSABLE,public disposable inbox
 user@nonexistent-domain-for-benchmark-3x9.com,INVALID,domain does not exist

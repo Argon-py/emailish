@@ -42,8 +42,21 @@ class Settings:
     egress_check_host: str = field(default_factory=lambda: _env("EGRESS_CHECK_HOST", "gmail-smtp-in.l.google.com"))
     skip_egress_check: bool = field(default_factory=lambda: _env("SKIP_EGRESS_CHECK", False))
     data_dir: Path = field(default_factory=lambda: Path(_env("DATA_DIR", "data")).resolve())
+    # Comma-separated domains. When set, SMTP is ONLY used for these domains (and their
+    # subdomains); every other address is reported UNKNOWN / smtp_not_permitted without any
+    # connection. Use it for controlled testing with domains you own.
+    smtp_allowed_domains: str = field(default_factory=lambda: _env("SMTP_ALLOWED_DOMAINS", ""))
     allow_private_mx: bool = False   # tests only
 
     def __post_init__(self):
         if not self.mail_from:
             self.mail_from = f"verify@{self.helo_host}"
+
+    @property
+    def smtp_allowlist(self) -> tuple[str, ...]:
+        return tuple(d.strip().lower().rstrip(".") for d in self.smtp_allowed_domains.split(",") if d.strip())
+
+    def smtp_permitted(self, domain: str) -> bool:
+        allow = self.smtp_allowlist
+        d = domain.lower().rstrip(".")
+        return not allow or any(d == a or d.endswith("." + a) for a in allow)

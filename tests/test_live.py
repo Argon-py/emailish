@@ -17,7 +17,10 @@ pytestmark = pytest.mark.skipif(os.environ.get("EMAILISH_LIVE") != "1", reason="
 
 @pytest.fixture(scope="module")
 def live():
-    v = Verifier(Settings(greylist_retry_delay=0, data_dir=__import__("pathlib").Path("/tmp/emailish-live")))
+    # SMTP is always OFF here: these live tests check DNS facts only and must never send SMTP
+    # commands to third-party mail servers, even on a machine where port 25 is open.
+    v = Verifier(Settings(smtp_enabled=False, greylist_retry_delay=0,
+                          data_dir=__import__("pathlib").Path("/tmp/emailish-live")))
     asyncio.run(v.init())
     print("\nDNS backend:", v.status.dns_backend, "\nSMTP:", v.status.smtp_note)
     return v
@@ -44,15 +47,13 @@ def test_live_matrix(live):
                 assert res[e].sub_status == want[1], e
     g = res["someone@gmail.com"]
     assert g.mx_found is True and g.mail_provider == "Google"
-    if not live.status.smtp_available:
-        assert g.email_status == Status.UNKNOWN and g.sub_status == "smtp_unavailable"
-    assert g.email_status != Status.VALID or g.smtp_status.value == "accepted"
+    assert g.email_status == Status.UNKNOWN and g.sub_status == "smtp_disabled"
 
 
 def test_live_implicit_mx(live):
     r = asyncio.run(live.verify_one("someone@httpbin.org"))
     assert r.mx_found is False and r.domain_valid is True     # A record used as implicit MX
-    assert r.email_status != Status.VALID or r.smtp_status.value == "accepted"
+    assert r.email_status == Status.UNKNOWN and r.sub_status == "smtp_disabled"
 
 
 def test_live_a_suggestion_on_real_typo(live):

@@ -21,7 +21,7 @@ import dns.resolver
 import httpx
 
 OK, NXDOMAIN, NODATA, ERROR = "ok", "nxdomain", "nodata", "error"
-_TYPE_NUM = {"A": 1, "MX": 15, "AAAA": 28}
+_TYPE_NUM = {"A": 1, "PTR": 12, "MX": 15, "TXT": 16, "AAAA": 28}
 
 
 @dataclass

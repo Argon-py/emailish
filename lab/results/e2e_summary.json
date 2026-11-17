@@ -1,0 +1,207 @@
+{
+ "health": {
+  "dns_backend": "fake",
+  "smtp_enabled": true,
+  "smtp_available": true,
+  "smtp_note": "outbound TCP/25 works (egress.lab.mock)",
+  "helo_host": "verifier.lab.mock",
+  "mail_from": "probe@verifier.lab.mock",
+  "warnings": [
+   "SMTP is limited to: lab-valid.mock, lab-catchall.mock, lab-grey.mock, lab-temp.mock, lab-blocked.mock, lab-down.mock (EMAILISH_SMTP_ALLOWED_DOMAINS). Other domains are reported UNKNOWN / smtp_not_permitted."
+  ]
+ },
+ "phases": [
+  "reading file",
+  "syntax",
+  "verifying",
+  "greylist retry in 8s (2 addresses)",
+  "done"
+ ],
+ "seconds": 10.8,
+ "unique_emails": 16,
+ "rows": 17,
+ "results": [
+  {
+   "email": "alice@lab-valid.mock",
+   "lab_behaviour": "real mailbox",
+   "expected": "VALID/accepted",
+   "got": "VALID/accepted",
+   "smtp_status": "accepted",
+   "smtp_code": "250 2.1.5",
+   "confidence": "90",
+   "pass": true
+  },
+  {
+   "email": "Bob@Lab-Valid.mock",
+   "lab_behaviour": "real mailbox, mixed case",
+   "expected": "VALID/accepted",
+   "got": "VALID/accepted",
+   "smtp_status": "accepted",
+   "smtp_code": "250 2.1.5",
+   "confidence": "90",
+   "pass": true
+  },
+  {
+   "email": "  bob@lab-valid.mock ",
+   "lab_behaviour": "duplicate of Bob with spaces",
+   "expected": "VALID/accepted",
+   "got": "VALID/accepted",
+   "smtp_status": "accepted",
+   "smtp_code": "250 2.1.5",
+   "confidence": "90",
+   "pass": true
+  },
+  {
+   "email": "info@lab-valid.mock",
+   "lab_behaviour": "real role mailbox",
+   "expected": "ROLE_BASED/role_based",
+   "got": "ROLE_BASED/role_based",
+   "smtp_status": "accepted",
+   "smtp_code": "250 2.1.5",
+   "confidence": "90",
+   "pass": true
+  },
+  {
+   "email": "nobody@lab-valid.mock",
+   "lab_behaviour": "Postfix: User unknown in virtual mailbox table",
+   "expected": "INVALID/mailbox_not_found",
+   "got": "INVALID/mailbox_not_found",
+   "smtp_status": "rejected",
+   "smtp_code": "550 5.1.1",
+   "confidence": "92",
+   "pass": true
+  },
+  {
+   "email": "ghost.user@lab-valid.mock",
+   "lab_behaviour": "Postfix: User unknown",
+   "expected": "INVALID/mailbox_not_found",
+   "got": "INVALID/mailbox_not_found",
+   "smtp_status": "rejected",
+   "smtp_code": "550 5.1.1",
+   "confidence": "92",
+   "pass": true
+  },
+  {
+   "email": "disabled@lab-valid.mock",
+   "lab_behaviour": "access map 550 5.2.1",
+   "expected": "INVALID/mailbox_disabled",
+   "got": "INVALID/mailbox_disabled",
+   "smtp_status": "rejected",
+   "smtp_code": "550 5.2.1",
+   "confidence": "90",
+   "pass": true
+  },
+  {
+   "email": "full@lab-valid.mock",
+   "lab_behaviour": "access map 552 5.2.2",
+   "expected": "RISKY/mailbox_quota_exceeded",
+   "got": "RISKY/mailbox_quota_exceeded",
+   "smtp_status": "mailbox_full",
+   "smtp_code": "552 5.2.2",
+   "confidence": "70",
+   "pass": true
+  },
+  {
+   "email": "anyone@lab-catchall.mock",
+   "lab_behaviour": "virtual alias catch-all",
+   "expected": "CATCH_ALL/catch_all",
+   "got": "CATCH_ALL/catch_all",
+   "smtp_status": "catch_all",
+   "smtp_code": "250 2.1.5",
+   "confidence": "80",
+   "pass": true
+  },
+  {
+   "email": "sales@lab-catchall.mock",
+   "lab_behaviour": "role address on catch-all",
+   "expected": "ROLE_BASED/role_based_catch_all",
+   "got": "ROLE_BASED/role_based_catch_all",
+   "smtp_status": "catch_all",
+   "smtp_code": "250 2.1.5",
+   "confidence": "60",
+   "pass": true
+  },
+  {
+   "email": "carol@lab-grey.mock",
+   "lab_behaviour": "real postgrey: greylisted first, accepted on retry",
+   "expected": "VALID/accepted",
+   "got": "VALID/accepted",
+   "smtp_status": "accepted",
+   "smtp_code": "250 2.1.5",
+   "confidence": "90",
+   "pass": true
+  },
+  {
+   "email": "dave@lab-temp.mock",
+   "lab_behaviour": "451 4.3.0 temporary failure",
+   "expected": "UNKNOWN/mail_server_temporary_error",
+   "got": "UNKNOWN/mail_server_temporary_error",
+   "smtp_status": "temp_error",
+   "smtp_code": "451 4.3.0",
+   "confidence": "0",
+   "pass": true
+  },
+  {
+   "email": "erin@lab-blocked.mock",
+   "lab_behaviour": "554 5.7.1 blocklist rejection",
+   "expected": "UNKNOWN/antispam_system",
+   "got": "UNKNOWN/antispam_system",
+   "smtp_status": "blocked",
+   "smtp_code": "554 5.7.1",
+   "confidence": "0",
+   "pass": true
+  },
+  {
+   "email": "frank@lab-down.mock",
+   "lab_behaviour": "mail server down (connection refused)",
+   "expected": "UNKNOWN/failed_smtp_connection",
+   "got": "UNKNOWN/failed_smtp_connection",
+   "smtp_status": "connection_failed",
+   "smtp_code": "",
+   "confidence": "0",
+   "pass": true
+  },
+  {
+   "email": "someone@not-allowed.example.org",
+   "lab_behaviour": "outside EMAILISH_SMTP_ALLOWED_DOMAINS",
+   "expected": "UNKNOWN/smtp_not_permitted",
+   "got": "UNKNOWN/smtp_not_permitted",
+   "smtp_status": "not_checked",
+   "smtp_code": "",
+   "confidence": "0",
+   "pass": true
+  },
+  {
+   "email": "x@mailinator.com",
+   "lab_behaviour": "disposable list, no SMTP needed",
+   "expected": "DISPOSABLE/disposable",
+   "got": "DISPOSABLE/disposable",
+   "smtp_status": "not_checked",
+   "smtp_code": "",
+   "confidence": "95",
+   "pass": true
+  },
+  {
+   "email": "not-an-email",
+   "lab_behaviour": "syntax",
+   "expected": "INVALID/failed_syntax_check",
+   "got": "INVALID/failed_syntax_check",
+   "smtp_status": "not_checked",
+   "smtp_code": "",
+   "confidence": "99",
+   "pass": true
+  }
+ ],
+ "all_pass": true,
+ "leading_zeros_ok": true,
+ "xlsx_rows": 17,
+ "by_status": {
+  "VALID": 4,
+  "ROLE_BASED": 2,
+  "INVALID": 4,
+  "RISKY": 1,
+  "CATCH_ALL": 1,
+  "UNKNOWN": 4,
+  "DISPOSABLE": 1
+ }
+}

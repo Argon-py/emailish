@@ -90,6 +90,10 @@ class Verifier:
             self.status.smtp_available, self.status.smtp_note = True, "egress check skipped by configuration"
         elif self.status.smtp_available is None or force_egress_check:
             await self.check_egress()
+        if self.s.smtp_enabled and self.s.smtp_allowlist:
+            self.status.warnings.append(
+                "SMTP is limited to: " + ", ".join(self.s.smtp_allowlist) +
+                " (EMAILISH_SMTP_ALLOWED_DOMAINS). Other domains are reported UNKNOWN / smtp_not_permitted.")
         if self.s.smtp_enabled and self.s.helo_host.startswith("localhost"):
             self.status.warnings.append(
                 "HELO hostname is not a real FQDN; many mail servers will block probes. "
@@ -99,6 +103,11 @@ class Verifier:
 
     async def check_egress(self) -> None:
         host = self.s.egress_check_host
+        if self.s.smtp_allowlist and host == "gmail-smtp-in.l.google.com":
+            # Controlled testing: test egress against YOUR first allowed domain's mail server.
+            mx = await self.backend.query(self.s.smtp_allowlist[0], "MX")
+            hosts = [h for _, h in sorted(mx.records) if h not in ("", ".")] if mx.status == "ok" else []
+            host = hosts[0] if hosts else self.s.smtp_allowlist[0]
         ans = await self.backend.query(host, "A")
         if not ans.records:
             self.status.smtp_available = False
@@ -236,6 +245,8 @@ class Verifier:
             return {}
         if not self.s.smtp_enabled:
             return {p.raw: SmtpOutcome("disabled") for p in plist}
+        if not self.s.smtp_permitted(domain):
+            return {p.raw: SmtpOutcome("not_permitted") for p in plist}
         if not self.status.smtp_available:
             return {p.raw: SmtpOutcome("unavailable") for p in plist}
 
@@ -378,17 +389,19 @@ class Verifier:
 
         mx_desc = info.detail
         # --- SMTP not performed ---
-        if o is None or o.status in ("unavailable", "disabled"):
+        if o is None or o.status in ("unavailable", "disabled", "not_permitted"):
             r.smtp_status = SmtpStatus.UNAVAILABLE if (o and o.status == "unavailable") else SmtpStatus.NOT_CHECKED
-            why = ("outbound SMTP (port 25) is unavailable from this host"
-                   if o and o.status == "unavailable" else "SMTP checks are disabled")
+            why = {"unavailable": "outbound SMTP (port 25) is unavailable from this host",
+                   "not_permitted": "domain is not in EMAILISH_SMTP_ALLOWED_DOMAINS",
+                   }.get(o.status if o else "", "SMTP checks are disabled")
             if p.did_you_mean:
                 return done(Status.RISKY, "possible_typo", U, 60,
                             f"Domain looks like a misspelling of a popular provider; mailbox not checked ({why}).")
             if p.trap:
                 return done(Status.RISKY, "possible_trap", U, 55,
                             f"Local part matches spam-trap keywords; mailbox not checked ({why}).")
-            sub = "smtp_unavailable" if o and o.status == "unavailable" else "smtp_disabled"
+            sub = {"unavailable": "smtp_unavailable", "not_permitted": "smtp_not_permitted"}.get(
+                o.status if o else "", "smtp_disabled")
             return done(Status.UNKNOWN, sub, U, 0,
                         f"Domain accepts mail ({mx_desc}). Mailbox existence NOT verified: {why}.")
 

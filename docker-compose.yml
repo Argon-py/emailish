@@ -1,9 +1,12 @@
 services:
   emailish:
     build: .
-    ports: ["8000:8000"]
+    # The web UI has no login: publish it on localhost only. On a remote server use an SSH
+    # tunnel (ssh -L 8000:127.0.0.1:8000 you@server) instead of opening the port.
+    ports: ["127.0.0.1:8000:8000"]
     volumes: ["./data:/data"]
+    env_file:
+      - path: .env            # copy deploy/emailish.env.example to .env and edit
+        required: false
     environment:
-      # A hostname you control, with reverse DNS (PTR) pointing back to this server's IP:
-      EMAILISH_HELO_HOST: ${EMAILISH_HELO_HOST:-}
-      EMAILISH_MAIL_FROM: ${EMAILISH_MAIL_FROM:-}
+      EMAILISH_DATA_DIR: /data

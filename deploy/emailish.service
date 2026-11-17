@@ -1,0 +1,22 @@
+# systemd unit: sudo cp deploy/emailish.service /etc/systemd/system/ && sudo systemctl enable --now emailish
+# The web UI has NO login: it listens on 127.0.0.1 only. Reach it with an SSH tunnel:
+#   ssh -L 8000:127.0.0.1:8000 you@your-server     then open http://127.0.0.1:8000
+[Unit]
+Description=emailish email verifier
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=emailish
+Group=emailish
+WorkingDirectory=/opt/emailish
+EnvironmentFile=/etc/emailish/emailish.env
+ExecStart=/opt/emailish/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=on-failure
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/emailish
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

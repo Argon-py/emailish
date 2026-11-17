@@ -1,5 +1,5 @@
 {
- "started_at": "2026-11-17T13:52:01+00:00",
+ "started_at": "2026-11-17T15:18:48+00:00",
  "health": {
   "dns_backend": "DNS-over-HTTPS: system resolver failed self-test (MX lookup for gmail.com returned nodata )",
   "smtp_enabled": false,
@@ -93,118 +93,118 @@
   "csv": {
    "rows": 1000,
    "unique": 748,
-   "upload_s": 0.04,
-   "verify_s": 10.27,
-   "download_s": 0.01,
-   "polls": 186
+   "upload_s": 0.047,
+   "verify_s": 9.988,
+   "download_s": 0.014,
+   "polls": 178
   },
   "xlsx": {
    "rows": 1000,
    "unique": 748,
-   "upload_s": 0.139,
-   "verify_s": 0.886,
-   "download_s": 0.005,
-   "polls": 8
+   "upload_s": 0.146,
+   "verify_s": 1.044,
+   "download_s": 0.007,
+   "polls": 10
   },
   "manual": {
    "rows": 30,
    "unique": 30,
-   "upload_s": 0.007,
-   "verify_s": 0.11,
-   "download_s": 0.004,
+   "upload_s": 0.011,
+   "verify_s": 0.116,
+   "download_s": 0.005,
    "polls": 3
   }
  },
  "progress_samples_csv_job": [
   [
-   0.023,
+   0.028,
    "running",
    "reading file",
    0,
    0
   ],
   [
-   1.178,
+   1.171,
+   "running",
+   "syntax",
+   104,
+   748
+  ],
+  [
+   1.925,
    "running",
    "verifying",
    238,
    748
   ],
   [
-   1.973,
+   2.679,
    "running",
    "verifying",
-   353,
+   544,
    748
   ],
   [
-   2.761,
+   3.438,
    "running",
    "verifying",
-   531,
+   565,
    748
   ],
   [
-   3.553,
+   4.178,
    "running",
    "verifying",
-   612,
+   615,
    748
   ],
   [
-   4.354,
+   4.922,
    "running",
    "verifying",
-   637,
+   635,
    748
   ],
   [
-   5.145,
+   5.673,
    "running",
    "verifying",
-   663,
+   656,
    748
   ],
   [
-   5.937,
+   6.43,
    "running",
    "verifying",
-   674,
+   695,
    748
   ],
   [
-   6.732,
+   7.172,
    "running",
    "verifying",
-   697,
+   704,
    748
   ],
   [
-   7.524,
+   7.914,
    "running",
    "verifying",
-   715,
+   720,
    748
   ],
   [
-   8.318,
+   8.657,
    "running",
    "verifying",
-   738,
+   737,
    748
   ],
   [
-   9.109,
+   9.401,
    "running",
    "verifying",
-   745,
-   748
-  ],
-  [
-   9.907,
-   "running",
-   "writing results",
-   748,
+   747,
    748
   ]
  ],
@@ -242,7 +242,7 @@
   {
    "check": "progress: intermediate states observed (queued/running before done)",
    "result": "PASS",
-   "detail": "186 polls, phases ['done', 'reading file', 'syntax', 'verifying', 'writing results']"
+   "detail": "178 polls, phases ['done', 'reading file', 'syntax', 'verifying', 'writing results']"
   },
   {
    "check": "CSV job: CSV export downloads (HTTP 200, text/csv)",

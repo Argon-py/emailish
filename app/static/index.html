@@ -127,7 +127,8 @@ async function health() {
     const msgs = [];
     if (h.smtp_enabled === false) msgs.push(`<b>Mailbox (SMTP) checks are turned off.</b>Syntax, DNS and list checks run; ` +
       `addresses that need a mailbox check are reported as UNKNOWN (smtp_disabled), never VALID.`);
-    else if (h.smtp_available === false) msgs.push(`<b>Mailbox (SMTP) checks cannot run on this machine.</b>${esc(h.smtp_note)}`);
+    else if (h.smtp_available === false) msgs.push(`<b>Mailbox (SMTP) checks cannot run on this machine.</b>${esc(h.smtp_note)} ` +
+      `Run <code>python -m app.cli diagnose</code> for details.`);
     for (const w of h.warnings || []) msgs.push(esc(w));
     if (msgs.length) { $("banner").innerHTML = msgs.join("<br>"); $("banner").classList.remove("hidden"); }
   } catch (e) {}

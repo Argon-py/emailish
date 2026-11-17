@@ -296,3 +296,48 @@ def test_wrapper_only_cells_are_syntax_invalid_not_empty(verifier):
 def test_zero_width_space_does_not_make_a_good_address_invalid(verifier):
     res = verify(verifier, "alice@valid.mock​")
     assert res["alice@valid.mock​"].email_status == Status.VALID
+
+
+# --- SMTP allowlist (EMAILISH_SMTP_ALLOWED_DOMAINS) -------------------------------
+def test_allowlist_only_contacts_allowed_domains(cluster):
+    v = Verifier(make_settings(cluster, smtp_allowed_domains="valid.mock"), dns_backend=fake_dns())
+    run(v.init())
+    catchall_log = cluster.servers["127.0.0.3"].log
+    before = len(catchall_log)
+    res = run(v.verify_many(["alice@valid.mock", "anyone@catchall.mock", "x@sub.valid.mock"]))
+    assert res["alice@valid.mock"].email_status == Status.VALID
+    r = res["anyone@catchall.mock"]
+    assert r.email_status == Status.UNKNOWN and r.sub_status == "smtp_not_permitted"
+    assert r.smtp_status == SmtpStatus.NOT_CHECKED and r.confidence == 0
+    assert len(catchall_log) == before, "no command may reach a non-allowed domain's server"
+    assert any("smtp is limited to" in w.lower() for w in v.status.warnings)
+
+
+def test_allowlist_still_reports_dns_and_list_verdicts(cluster):
+    v = Verifier(make_settings(cluster, smtp_allowed_domains="valid.mock"), dns_backend=fake_dns())
+    run(v.init())
+    res = run(v.verify_many(["a@nullmx.mock", "x@mailinator.com", "bad@@x"]))
+    assert res["a@nullmx.mock"].email_status == Status.INVALID
+    assert res["x@mailinator.com"].email_status == Status.DISPOSABLE
+    assert res["bad@@x"].email_status == Status.INVALID
+
+
+def test_diagnose_sends_only_ehlo_and_quit(cluster, monkeypatch, capsys):
+    from app.diagnose import diagnose
+    monkeypatch.setenv("EMAILISH_SMTP_PORT", str(cluster.port))
+    monkeypatch.setenv("EMAILISH_HELO_HOST", "verifier.example.org")
+    log = cluster.servers["127.0.0.2"].log
+    before = len(log)
+    rc = run(diagnose(target="127.0.0.2", public_ip=False))
+    out = capsys.readouterr().out
+    assert "SMTP greeting: banner '220" in out and rc == 0
+    cmds = [c.split()[0].upper() for c in log[before:]]
+    assert cmds == ["EHLO", "QUIT"], cmds
+
+
+def test_diagnose_reports_blocked_port(cluster, monkeypatch, capsys):
+    from app.diagnose import diagnose
+    monkeypatch.setenv("EMAILISH_SMTP_PORT", str(cluster.port))
+    rc = run(diagnose(target="127.0.0.40", public_ip=False))     # nothing listens there
+    out = capsys.readouterr().out
+    assert rc == 1 and "NOT READY" in out and "blocked" in out

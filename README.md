@@ -50,9 +50,14 @@ python -m app.cli health                        # DNS backend + SMTP egress stat
 ## ⚠️ Mailbox (SMTP) checks need the right network
 
 Confirming whether a mailbox exists means talking SMTP to the recipient's mail server on
-**TCP port 25**. Many networks block that port: most home ISPs, AWS, GCP and Azure by
+**TCP port 25**. Many networks block that port: most home ISPs, most cloud providers by
 default, and the cloud sandbox this was built in. emailish tests this at startup and
-before every job.
+before every job. Check your own machine (no MAIL/RCPT/DATA is sent):
+
+```bash
+python -m app.cli diagnose                       # Windows: .\.venv\Scripts\python.exe -m app.cli diagnose
+python -m app.cli diagnose --domain yourdomain.com   # also greets your own mail server (EHLO only)
+```
 
 - **If port 25 is blocked**, every address that needs an SMTP check is reported as
   `UNKNOWN / smtp_unavailable` with that reason. The tool **never guesses VALID**.
@@ -72,6 +77,15 @@ before every job.
 
   Probes from hosts without these are blocked more often, which raises the share of
   UNKNOWN results. That is reported honestly, not hidden.
+- **For controlled testing**, set `EMAILISH_SMTP_ALLOWED_DOMAINS=yourdomain.com`: SMTP then
+  only touches your domains, and every other address is reported `UNKNOWN / smtp_not_permitted`
+  without any connection.
+
+Full details: [`research/SMTP_ENABLEMENT_REPORT.md`](research/SMTP_ENABLEMENT_REPORT.md)
+(why SMTP is off, what is required, server deployment with [`deploy/`](deploy/)) and
+[`research/REAL_WORLD_TESTING_GUIDE.md`](research/REAL_WORLD_TESTING_GUIDE.md) (step-by-step
+tests with addresses you own). The SMTP engine has been verified end-to-end against a real
+Postfix + postgrey mail server in [`lab/`](lab/), but not yet against internet mail providers.
 
 No email is ever sent: the session stops after `RCPT TO` (`RSET`/`QUIT`, never `DATA`).
 
@@ -123,7 +137,9 @@ It tells you about the verifier's IP, not about the mailbox.
 |---|---|---|
 | `EMAILISH_HELO_HOST` | machine FQDN | HELO/EHLO name. Should have matching reverse DNS. |
 | `EMAILISH_MAIL_FROM` | `verify@<helo>` | envelope sender used for probes |
-| `EMAILISH_SMTP_ENABLED` | `true` | `false` = DNS/list checks only |
+| `EMAILISH_SMTP_ENABLED` | `true` | `false` = DNS/list checks only (`run.bat --no-smtp`) |
+| `EMAILISH_SMTP_ALLOWED_DOMAINS` | *(empty = all)* | comma-separated domains; SMTP is used **only** for these |
+| `EMAILISH_EGRESS_CHECK_HOST` | `gmail-smtp-in.l.google.com` | host for the startup port-25 test (TCP connect only); with an allowlist, your first allowed domain's MX is used instead |
 | `EMAILISH_SMTP_GLOBAL_CONCURRENCY` | 8 | concurrent SMTP sessions overall |
 | `EMAILISH_SMTP_PER_HOST` | 1 | concurrent sessions per MX host |
 | `EMAILISH_SMTP_MX_MIN_INTERVAL` | 2.0 | seconds between connections to one MX host |
@@ -137,7 +153,7 @@ It tells you about the verifier's IP, not about the mailbox.
 
 ```bash
 pip install -r requirements-dev.txt
-pytest                                   # offline: mock SMTP servers + fake DNS
+pytest                                   # 145 offline tests: mock SMTP servers + fake DNS
 EMAILISH_LIVE=1 pytest tests/test_live.py -s   # live DNS checks
 ```
 
@@ -149,6 +165,14 @@ rejected `MAIL FROM`, implicit MX, Null MX, NXDOMAIN, dangling MX, DNS failure,
 unroutable MX, disposable by list and by MX, and typo domains. It also checks that
 `DATA` is never sent, that duplicates are probed once, and the rate-limit spacing.
 Results from the last run are in [`research/test-results.md`](research/test-results.md).
+
+### SMTP against a real mail server (Postfix lab, Linux, disposable machine only)
+
+```bash
+sudo apt-get install -y postfix postgrey && sudo bash lab/setup_lab_mta.sh
+EMAILISH_LAB_MTA=1 pytest tests/test_lab_mta.py -s   # 6 tests: real Postfix replies, greylisting, rate limit, HELO, allowlist
+python lab/run_lab_e2e.py                           # full upload -> verify (SMTP on) -> download run, 17 rows
+```
 
 ### QA with a 1,000-record synthetic list (SMTP disabled)
 

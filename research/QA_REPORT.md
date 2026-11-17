@@ -147,6 +147,13 @@ written reasons. Nothing was reclassified to make a test pass.
 - Expected DNS results can drift as domains change; see `TEST_DATA_GUIDE.md`.
 
 ## 8. What needs real SMTP testing (proposed round 2)
+
+> **Update:** SMTP has since been verified against a real Postfix + postgrey server with
+> test domains we control (`lab/`, 6/6 tests, 17/17 end-to-end rows). See
+> [`SMTP_ENABLEMENT_REPORT.md`](SMTP_ENABLEMENT_REPORT.md) and the step-by-step
+> [`REAL_WORLD_TESTING_GUIDE.md`](REAL_WORLD_TESTING_GUIDE.md). Testing against internet
+> mail providers still requires a server with outbound port 25.
+
 Run on a server with outbound port 25, a static IP with matching reverse DNS (PTR), and
 `EMAILISH_HELO_HOST` / `EMAILISH_MAIL_FROM` set to a domain you own. Use **only addresses
 you control**, and keep the default conservative limits.
@@ -157,8 +164,8 @@ you control**, and keep the default conservative limits.
 | Non-existent mailbox | `random-string@` your non-catch-all domain | INVALID `mailbox_not_found` |
 | Catch-all | any address on a domain you configure as catch-all | CATCH_ALL |
 | Role mailbox | `info@` your domain (exists) | ROLE_BASED |
-| Gmail / Outlook.com | your own accounts, plus `zz-nonexistent-…@` | VALID / INVALID (5.1.1, 5.5.0) |
-| Microsoft 365 tenant | your M365 user, plus a non-existent one | VALID / INVALID (5.4.1 DBEB) |
+| Gmail / Outlook.com (optional) | **only your own accounts**; no made-up addresses at providers you don't control | VALID, or UNKNOWN if the provider blocks the probe |
+| Microsoft 365 tenant **you administer** | your M365 user, plus a non-existent one on your own tenant domain | VALID / INVALID (5.4.1 DBEB) |
 | Greylisting | a Postfix + postgrey server you run | UNKNOWN → VALID after the retry pass |
 | Blocking behaviour | — | observe `antispam_system` rates; these must never be INVALID |
 
