@@ -8,7 +8,10 @@
   "mail_from": "probe@verifier.lab.mock",
   "warnings": [
    "SMTP is limited to: lab-valid.mock, lab-catchall.mock, lab-grey.mock, lab-temp.mock, lab-blocked.mock, lab-down.mock (EMAILISH_SMTP_ALLOWED_DOMAINS). Other domains are reported UNKNOWN / smtp_not_permitted."
-  ]
+  ],
+  "provider": "",
+  "provider_credits": null,
+  "provider_note": ""
  },
  "phases": [
   "reading file",

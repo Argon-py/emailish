@@ -4,7 +4,7 @@
   "pass": 1000,
   "fail": 0,
   "failures": [],
-  "seconds": 0.028
+  "seconds": 0.03
  },
  "dataset: disposable (list)": {
   "tested": 780,
@@ -35,7 +35,7 @@
   "pass": 177,
   "fail": 0,
   "failures": [],
-  "seconds": 10.36
+  "seconds": 9.1
  },
  "dns: top-3 MX hosts vs oracle": {
   "tested": 113,

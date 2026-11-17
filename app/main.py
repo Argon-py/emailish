@@ -55,7 +55,8 @@ def create_app(settings: Settings | None = None, verifier: Verifier | None = Non
         st = app.state.verifier.status
         return {"dns_backend": st.dns_backend, "smtp_enabled": app.state.verifier.s.smtp_enabled,
                 "smtp_available": st.smtp_available, "smtp_note": st.smtp_note,
-                "helo_host": st.helo_host, "mail_from": st.mail_from, "warnings": st.warnings}
+                "helo_host": st.helo_host, "mail_from": st.mail_from, "warnings": st.warnings,
+                "provider": st.provider, "provider_credits": st.provider_credits, "provider_note": st.provider_note}
 
     @app.post("/api/upload")
     async def upload(file: UploadFile = File(...)):

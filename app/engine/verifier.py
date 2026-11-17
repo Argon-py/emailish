@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 from typing import Awaitable, Callable
 
 from ..config import Settings
+from ..providers import Provider, ProviderFatal, client_for, provider_from_settings
 from . import lists, replies, smtp
 from .dnslayer import DomainCache, DomainInfo, pick_backend
 from .models import Certainty, SmtpStatus, Status, VerificationResult
@@ -62,13 +63,22 @@ class EngineStatus:
     smtp_note: str = ""
     helo_host: str = ""
     mail_from: str = ""
+    provider: str = ""                 # label of the commercial provider in use, or ""
+    provider_credits: float | None = None
+    provider_note: str = ""
     warnings: list[str] = field(default_factory=list)
 
 
+_AUTO = object()
+ESCALATE = (Status.UNKNOWN, Status.TIMEOUT)
+
+
 class Verifier:
-    def __init__(self, settings: Settings | None = None, dns_backend=None):
+    def __init__(self, settings: Settings | None = None, dns_backend=None, provider=_AUTO):
         self.s = settings or Settings()
         self.backend = dns_backend
+        self.provider: Provider | None = provider_from_settings(self.s) if provider is _AUTO else provider
+        self.last_provider_stats: dict = {}
         self.dcache = DomainCache(allow_private=self.s.allow_private_mx)
         self.catchall: dict[str, CatchAllVerdict] = {}
         self._probe_addr: dict[str, str] = {}
@@ -90,6 +100,7 @@ class Verifier:
             self.status.smtp_available, self.status.smtp_note = True, "egress check skipped by configuration"
         elif self.status.smtp_available is None or force_egress_check:
             await self.check_egress()
+        await self._init_provider()
         if self.s.smtp_enabled and self.s.smtp_allowlist:
             self.status.warnings.append(
                 "SMTP is limited to: " + ", ".join(self.s.smtp_allowlist) +
@@ -100,6 +111,29 @@ class Verifier:
                 "Set EMAILISH_HELO_HOST to a hostname with matching reverse DNS.")
         self._ready = True
         return self.status
+
+    async def _init_provider(self) -> None:
+        if not self.provider:
+            several = [n for n in ("zerobounce", "millionverifier", "hunter") if self.s.provider_key(n)]
+            if len(several) > 1 and not self.s.provider:
+                self.status.warnings.append(
+                    f"Several provider keys are set ({', '.join(several)}); choose one with EMAILISH_PROVIDER.")
+            return
+        p = self.provider
+        self.status.provider = p.label
+        try:
+            async with client_for(p) as c:
+                self.status.provider_credits = await p.credits(c)
+            cr = self.status.provider_credits
+            self.status.provider_note = (f"{p.label}: {cr:g} credits available" if cr is not None
+                                         else f"{p.label}: key accepted")
+        except ProviderFatal as e:
+            self.status.warnings.append(f"{e}. Provider checks are switched off; fix the key in .env.")
+            self.status.provider_note = str(e)
+            self.provider = None
+            self.status.provider = ""
+        except Exception as e:
+            self.status.provider_note = f"{p.label}: credit balance not available ({type(e).__name__}); checks will still be attempted"
 
     async def check_egress(self) -> None:
         host = self.s.egress_check_host
@@ -197,6 +231,10 @@ class Verifier:
                     res = self.classify(p, info, outs.get(p.raw))
                     res.verification_reason += " (after greylist retry)"
                     results[p.raw] = res
+        # 4. commercial provider for what the local engine could not settle
+        self.last_provider_stats = {}
+        if self.provider:
+            await self._provider_pass(list(aliases), results, progress, total)
         for canon, others in aliases.items():
             for raw in others:
                 results[raw] = results[canon]
@@ -205,6 +243,80 @@ class Verifier:
             if asyncio.iscoroutine(r):
                 await r
         return results
+
+    # ------------------------------------------------------------ provider pass
+    def _needs_provider(self, r: VerificationResult) -> bool:
+        if r.email_status in ESCALATE or r.sub_status == "catch_all_undetermined":
+            return True
+        return self.s.provider_include_catch_all and (
+            r.email_status == Status.CATCH_ALL or r.sub_status == "role_based_catch_all")
+
+    async def _provider_pass(self, canon_raws: list[str], results: dict, progress: ProgressCb | None,
+                             total: int) -> None:
+        p = self.provider
+        todo = [raw for raw in canon_raws if self._needs_provider(results[raw])]
+        cap = max(0, self.s.provider_max_checks)
+        if self.status.provider_credits is not None:
+            cap = min(cap, int(self.status.provider_credits // p.credits_per_check))
+        run, over = todo[:cap], todo[cap:]
+        stats = {"provider": p.label, "candidates": len(todo), "checked": 0, "errors": 0,
+                 "not_checked_cap": len(over), "credits_estimated": 0.0, "stopped": ""}
+        for raw in over:
+            results[raw].verification_reason += (f" Not sent to {p.label}: per-job limit "
+                                                 f"(EMAILISH_PROVIDER_MAX_CHECKS) or credit balance reached.")
+        sem = asyncio.Semaphore(p.concurrency)
+        done = 0
+        stop: list[str] = []
+
+        async def one(raw: str):
+            nonlocal done
+            local = results[raw]
+            async with sem:
+                if stop:
+                    local.verification_reason += f" Not sent to {p.label}: {stop[0]}."
+                    return
+                try:
+                    v = await p.check(client, local.email)
+                except ProviderFatal as e:
+                    if not stop:
+                        stop.append(str(e))
+                    local.verification_reason += f" Not sent to {p.label}: {stop[0]}."
+                    return
+                except Exception as e:
+                    stats["errors"] += 1
+                    local.verification_reason += f" {p.label} check failed ({type(e).__name__}); local result kept."
+                    return
+            stats["checked"] += 1
+            stats["credits_estimated"] += p.credits_per_check if v.status != Status.UNKNOWN else 0
+            results[raw] = self._merge_provider(local, v, p)
+            done += 1
+            if progress:
+                pr = progress(total, total, f"checking with {p.label}: {done} / {len(run)}")
+                if asyncio.iscoroutine(pr):
+                    await pr
+
+        if run:
+            if progress:
+                pr = progress(total, total, f"checking with {p.label}: 0 / {len(run)}")
+                if asyncio.iscoroutine(pr):
+                    await pr
+            async with client_for(p) as client:
+                await asyncio.gather(*(one(raw) for raw in run))
+        stats["stopped"] = stop[0] if stop else ""
+        self.last_provider_stats = stats
+
+    @staticmethod
+    def _merge_provider(local: VerificationResult, v, p: Provider) -> VerificationResult:
+        r = VerificationResult(**{k: getattr(local, k) for k in local.__dataclass_fields__})
+        status = v.status
+        if status == Status.VALID and local.role_based:
+            status = Status.ROLE_BASED           # same rule as the local engine: role + confirmed mailbox
+        r.email_status, r.sub_status, r.certainty, r.confidence = status, v.sub_status, v.certainty, v.confidence
+        r.disposable = local.disposable or v.disposable
+        r.role_based = local.role_based or v.role
+        r.verified_by = p.name
+        r.verification_reason = f"{v.reason} (emailish could not settle it locally: {local.sub_status}.)"
+        return r
 
     # -------------------------------------------------------------- internals
     def _prelim(self, raw: str) -> Prelim:

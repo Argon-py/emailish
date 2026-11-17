@@ -54,7 +54,8 @@ class JobManager:
                                    engine_json=json.dumps({
                                        "dns_backend": st.dns_backend, "smtp_available": st.smtp_available,
                                        "smtp_note": st.smtp_note, "helo_host": st.helo_host,
-                                       "mail_from": st.mail_from, "warnings": st.warnings}))
+                                       "mail_from": st.mail_from, "warnings": st.warnings,
+                                       "provider": st.provider, "provider_note": st.provider_note}))
                 last = [0.0]
 
                 def progress(done: int, total: int, phase: str):
@@ -71,7 +72,9 @@ class JobManager:
                 xlsx_ok = await asyncio.to_thread(files.write_xlsx, out, jd / "results.xlsx", status_col)
                 by_status = Counter(r.email_status.value for r in (results[v] for v in raws))
                 certainty = Counter(r.certainty.value for r in (results[v] for v in raws))
-                summary = {"by_status": dict(by_status), "by_certainty": dict(certainty), "xlsx": xlsx_ok}
+                summary = {"by_status": dict(by_status), "by_certainty": dict(certainty), "xlsx": xlsx_ok,
+                           "verified_by": dict(Counter(results[v].verified_by for v in raws)),
+                           "provider": self.verifier.last_provider_stats or None}
                 self.db.update_job(job_id, status="done", phase="done", finished_at=now(),
                                    summary_json=json.dumps(summary))
             except Exception as e:

@@ -27,7 +27,7 @@ git pull
 
 | Check | Command | Expected |
 |---|---|---|
-| Automated test suite (mock SMTP servers on localhost, not port 25) | `.\.venv\Scripts\python.exe -m pytest` | `145 passed, 9 skipped` |
+| Automated test suite (mock SMTP servers on localhost, simulated provider APIs) | `.\.venv\Scripts\python.exe -m pytest` | `183 passed, 14 skipped` |
 | 1,000-record QA through the real app, SMTP disabled | `.\.venv\Scripts\python.exe test_data\run_qa.py` | `records: {'pass': 1000 …}`, `checks: 47 passed, 0 failed` |
 | Syntax / dataset / DNS layers separately | `.\.venv\Scripts\python.exe test_data\run_layers.py` | every layer `fail 0` |
 | Live DNS facts (SMTP forced off) | `$env:EMAILISH_LIVE="1"; .\.venv\Scripts\python.exe -m pytest tests\test_live.py -s` | `3 passed` |
@@ -37,6 +37,21 @@ git pull
 The 9 skipped tests are the 3 live-DNS tests (opt-in) and the 6 Postfix-lab tests, which
 need a Linux machine where you can install Postfix. The DNS-based checks need internet
 access (DNS-over-HTTPS).
+
+## Stage 1b: accurate mailbox results on this computer with a provider key (needs one API key)
+
+If you don't want to run a server, add one provider key to `.env` (see `.env.example`).
+emailish then sends the addresses it cannot settle to that provider. Test it with a
+**5-address file of addresses you own** before a large list:
+
+```powershell
+.\.venv\Scripts\python.exe -m app.cli provider-check     # free: key + credit balance
+.\run.bat --no-smtp                                        # then upload the 5-address file
+```
+
+Check the `verified_by` column, and that your real addresses come back VALID and a
+non-existent address on your own domain comes back INVALID. Details:
+[`PROVIDER_FALLBACK.md`](PROVIDER_FALLBACK.md).
 
 ## Stage 2: can this computer do SMTP? (no domain, no keys)
 

@@ -9,6 +9,60 @@ in [`research/`](research/).
 
 ![screenshot](docs/screenshot.png)
 
+## 📌 In plain English: what emailish does and doesn't do
+
+> [!TIP]
+> **What it CAN do on any computer, for free**
+> - ✅ Finds **badly written** addresses (`john@@gmail`, `john gmail.com`, empty cells).
+> - ✅ Finds addresses whose **domain does not exist** or **does not accept email at all**.
+> - ✅ Finds **throw-away (disposable)** addresses such as mailinator.com.
+> - ✅ Spots **typos** in the domain (`gmail.con`, `gmial.com`) and suggests the fix.
+> - ✅ Flags **shared/role inboxes** (`info@`, `sales@`) and **free webmail** (Gmail, Yahoo).
+> - ✅ Keeps **all your original columns** exactly as they were (leading zeros too) and adds the results.
+> - ✅ Checks each address **once**, even if it appears many times in your file.
+
+> [!IMPORTANT]
+> **What it CANNOT do on a normal home or office internet connection (on its own)**
+> - ❌ It **cannot confirm that a specific mailbox exists** (e.g. that `john.smith@company.com` is a real person).
+>   That needs a conversation with the receiving mail server on **port 25**, and home and office
+>   internet providers block that port.
+> - In that case those addresses come back as **UNKNOWN**: emailish never guesses "valid".
+>
+> **How to get those answers anyway, pick one:**
+> 1. **Add an API key** from MillionVerifier, ZeroBounce or Hunter to `.env`. Only the addresses
+>    emailish could not settle are sent to them (costs credits). See the
+>    [steps below](#-accurate-will-it-bounce-results-on-your-own-computer).
+> 2. **Run emailish on your own small server** where port 25 is allowed. This is the same method
+>    the paid services use, with no per-email cost. One command: `sudo bash deploy/install.sh …`
+>    ([guide](research/SMTP_ENABLEMENT_REPORT.md)).
+
+> [!WARNING]
+> **What it never does**
+> - 🚫 It **never sends an email**. It stops before any message is sent.
+> - 🚫 It does not get around providers' anti-spam protections (no proxies or rotating IPs).
+> - 🚫 It does not invent results. If it can't know, it says **UNKNOWN** and explains why.
+> - 🚫 No tool, paid or free, can be 100% sure about every address. Some domains accept
+>   everything ("catch-all"), and some servers hide the truth on purpose.
+
+> [!NOTE]
+> **What the results mean, and should I send to it?**
+>
+> | Result | Simple meaning | Send email? |
+> |---|---|---|
+> | **VALID** | The mailbox exists (confirmed by a mail server). | ✅ Yes |
+> | **ROLE_BASED** | Exists, but it's a shared inbox like `info@` or `sales@`. | ⚠️ Only if you mean to |
+> | **CATCH_ALL** | The domain accepts *any* address, so this one can't be confirmed. | ⚠️ Small test batch only |
+> | **RISKY** | Something is off: typo domain, full mailbox, spam-trap-like name. | ❌ Not without checking |
+> | **UNKNOWN** | Could not be checked (port 25 blocked, server refused, no answer). | ❌ No, check it later or with a key |
+> | **TIMEOUT** | The mail server did not answer in time. | ❌ No, try again later |
+> | **DISPOSABLE** | A throw-away inbox that will disappear. | 🚫 Never |
+> | **INVALID** | Will bounce: bad address, dead domain, or the mailbox does not exist. | 🚫 Never |
+>
+> Each row also gets a plain-language **`verification_reason`**, a **`confidence`** score
+> (0 = no evidence) and **`verified_by`** (`emailish`, or the paid service that answered).
+>
+> **To keep your bounce rate low, send only to VALID** (and ROLE_BASED if you want shared inboxes).
+
 ## Quick start
 
 ```bash
@@ -47,6 +101,33 @@ python -m app.cli file contacts.xlsx            # writes contacts_verified.csv /
 python -m app.cli health                        # DNS backend + SMTP egress status
 ```
 
+## ✅ Accurate "will it bounce?" results on your own computer
+
+Your internet provider most likely blocks port 25, so emailish cannot ask mail servers
+directly from your laptop. Add **one** provider key and emailish sends them **only** the
+addresses it could not settle itself (bad syntax, dead domains, Null MX and disposable
+addresses are decided locally for free):
+
+1. Copy `.env.example` to `.env` and add one key, e.g. `MILLIONVERIFIER_API_KEY=...`
+   (or `ZEROBOUNCE_API_KEY=...` / `HUNTER_API_KEY=...`).
+2. Check the key and balance (free):
+
+   ```powershell
+   .\.venv\Scripts\python.exe -m app.cli provider-check
+   ```
+3. Start the app:
+
+   ```powershell
+   .\run.bat --no-smtp
+   ```
+
+   Then upload and download as usual. The new `verified_by` column shows who decided each
+   result.
+
+Duplicates are sent once, there is a per-file cap (`EMAILISH_PROVIDER_MAX_CHECKS`, default
+5000), and calls stop at the first key or credit error. Details, costs and privacy:
+[`research/PROVIDER_FALLBACK.md`](research/PROVIDER_FALLBACK.md).
+
 ## ⚠️ Mailbox (SMTP) checks need the right network
 
 Confirming whether a mailbox exists means talking SMTP to the recipient's mail server on
@@ -81,6 +162,9 @@ python -m app.cli diagnose --domain yourdomain.com   # also greets your own mail
   only touches your domains, and every other address is reported `UNKNOWN / smtp_not_permitted`
   without any connection.
 
+One-command server install (Ubuntu/Debian):
+`sudo bash deploy/install.sh --helo verify.yourdomain.com --mail-from verify-bounces@yourdomain.com --allow yourdomain.com`.
+
 Full details: [`research/SMTP_ENABLEMENT_REPORT.md`](research/SMTP_ENABLEMENT_REPORT.md)
 (why SMTP is off, what is required, server deployment with [`deploy/`](deploy/)) and
 [`research/REAL_WORLD_TESTING_GUIDE.md`](research/REAL_WORLD_TESTING_GUIDE.md) (step-by-step
@@ -112,6 +196,7 @@ text, so ZIP codes and IDs keep their leading zeros. These columns are appended:
 | `certainty` | **CONFIRMED** (decided by direct evidence) or **UNCERTAIN** |
 | `did_you_mean` | typo suggestion (e.g. `jane@gmail.con` → `jane@gmail.com`) |
 | `mx_host`, `mail_provider`, `smtp_code` | which server answered, its platform, and its code (e.g. `550 5.1.1`) |
+| `verified_by` | `emailish`, or the provider (`zerobounce`, `millionverifier`, `hunter`) that supplied the verdict |
 
 If your file already has a column with one of these names, ours is written as `verify_<name>`.
 
@@ -138,6 +223,10 @@ It tells you about the verifier's IP, not about the mailbox.
 | `EMAILISH_HELO_HOST` | machine FQDN | HELO/EHLO name. Should have matching reverse DNS. |
 | `EMAILISH_MAIL_FROM` | `verify@<helo>` | envelope sender used for probes |
 | `EMAILISH_SMTP_ENABLED` | `true` | `false` = DNS/list checks only (`run.bat --no-smtp`) |
+| `ZEROBOUNCE_API_KEY` / `MILLIONVERIFIER_API_KEY` / `HUNTER_API_KEY` | *(empty)* | provider for addresses emailish cannot settle (put in `.env`) |
+| `EMAILISH_PROVIDER` | *(auto)* | `zerobounce`, `millionverifier`, `hunter` or `none`; needed only if several keys are set |
+| `EMAILISH_PROVIDER_MAX_CHECKS` | 5000 | paid checks per uploaded file at most |
+| `EMAILISH_PROVIDER_INCLUDE_CATCH_ALL` | false | also send CATCH_ALL results to the provider |
 | `EMAILISH_SMTP_ALLOWED_DOMAINS` | *(empty = all)* | comma-separated domains; SMTP is used **only** for these |
 | `EMAILISH_EGRESS_CHECK_HOST` | `gmail-smtp-in.l.google.com` | host for the startup port-25 test (TCP connect only); with an allowlist, your first allowed domain's MX is used instead |
 | `EMAILISH_SMTP_GLOBAL_CONCURRENCY` | 8 | concurrent SMTP sessions overall |
@@ -153,7 +242,7 @@ It tells you about the verifier's IP, not about the mailbox.
 
 ```bash
 pip install -r requirements-dev.txt
-pytest                                   # 145 offline tests: mock SMTP servers + fake DNS
+pytest                                   # 183 offline tests: mock SMTP servers, fake DNS, simulated provider APIs
 EMAILISH_LIVE=1 pytest tests/test_live.py -s   # live DNS checks
 ```
 

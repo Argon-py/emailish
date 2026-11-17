@@ -40,40 +40,21 @@ from app.engine.verifier import Verifier  # noqa: E402
 CATS = ["VALID", "INVALID", "CATCH_ALL", "DISPOSABLE", "ROLE_BASED", "RISKY", "UNKNOWN", "TIMEOUT"]
 
 
-# --- vendor taxonomy -> emailish categories --------------------------------------
+# --- vendor taxonomy -> emailish categories ------------------------------------
+# One source of truth: the same mapping the application uses (app/providers.py).
+from app import providers as _providers  # noqa: E402
+
+
 def map_zerobounce(j: dict) -> str:
-    st, sub = (j.get("status") or "").lower(), (j.get("sub_status") or "").lower()
-    if st == "valid":
-        return "ROLE_BASED" if sub == "role_based_accept_all" else "VALID"
-    if st == "invalid":
-        return "INVALID"
-    if st == "catch-all":
-        return "CATCH_ALL"
-    if st == "unknown":
-        return "UNKNOWN"
-    if st == "do_not_mail":
-        return {"disposable": "DISPOSABLE", "role_based": "ROLE_BASED",
-                "role_based_catch_all": "ROLE_BASED"}.get(sub, "RISKY")
-    if st in ("spamtrap", "abuse"):
-        return "RISKY"
-    return "UNKNOWN"
+    return _providers.map_zerobounce(j).status.value
 
 
 def map_millionverifier(j: dict) -> str:
-    res = (j.get("result") or "").lower()
-    if res == "ok":
-        return "ROLE_BASED" if j.get("role") else "VALID"
-    return {"catch_all": "CATCH_ALL", "unknown": "UNKNOWN", "disposable": "DISPOSABLE",
-            "invalid": "INVALID"}.get(res, "UNKNOWN")
+    return _providers.map_millionverifier(j).status.value
 
 
 def map_hunter(j: dict) -> str:
-    d = j.get("data", j)
-    st = (d.get("status") or "").lower()
-    if st == "webmail":   # Hunter's webmail status: fall back to its deliverability result
-        return {"deliverable": "VALID", "undeliverable": "INVALID"}.get((d.get("result") or "").lower(), "RISKY")
-    return {"valid": "VALID", "invalid": "INVALID", "accept_all": "CATCH_ALL",
-            "disposable": "DISPOSABLE", "unknown": "UNKNOWN"}.get(st, "UNKNOWN")
+    return _providers.map_hunter(j).status.value
 
 
 # --- vendor clients ----------------------------------------------------------------

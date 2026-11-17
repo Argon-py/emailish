@@ -4,6 +4,7 @@
   python -m app.cli file contacts.xlsx [--column Email] [--out results]
   python -m app.cli health
   python -m app.cli diagnose [--domain yourdomain.com] [--target host] [--no-public-ip]
+  python -m app.cli provider-check
 """
 from __future__ import annotations
 
@@ -52,6 +53,37 @@ async def _file(path: Path, column: str | None, out: Path | None) -> int:
     return 0
 
 
+async def _provider_check() -> int:
+    from .config import DOTENV_FILES
+    from .providers import PROVIDERS, ProviderFatal, client_for, provider_from_settings
+    s = Settings()
+    print("settings file(s) read:", ", ".join(str(p) for p in DOTENV_FILES) or "none (.env not found)")
+    for name, cls in PROVIDERS.items():
+        print(f"  {cls.key_env:26} {'set' if s.provider_key(name) else 'not set'}")
+    try:
+        p = provider_from_settings(s)
+    except ValueError as e:
+        print(e)
+        return 2
+    if not p:
+        print("\nNo provider in use. Put ONE key in .env (e.g. MILLIONVERIFIER_API_KEY=...), or several keys plus "
+              "EMAILISH_PROVIDER=zerobounce|millionverifier|hunter.")
+        return 1
+    try:
+        async with client_for(p) as c:
+            cr = await p.credits(c)
+    except ProviderFatal as e:
+        print(f"\n{p.label}: KEY REJECTED ({e})")
+        return 1
+    except Exception as e:
+        print(f"\n{p.label}: could not reach the API ({type(e).__name__}: {e})")
+        return 1
+    print(f"\nProvider in use: {p.label}. Credits available: {cr:g}" if cr is not None else
+          f"\nProvider in use: {p.label}. Key accepted.")
+    print(f"Per-job limit (EMAILISH_PROVIDER_MAX_CHECKS): {s.provider_max_checks}")
+    return 0
+
+
 async def _health() -> int:
     v = Verifier(Settings())
     st = await v.init()
@@ -69,11 +101,14 @@ def main(argv=None) -> int:
     f.add_argument("--column")
     f.add_argument("--out", type=Path)
     sub.add_parser("health")
+    sub.add_parser("provider-check", help="check the provider API key and credit balance (free, no credits used)")
     d = sub.add_parser("diagnose", help="can this machine run SMTP diagnostics? (sends no MAIL/RCPT/DATA)")
     d.add_argument("--domain", help="your own domain: test its mail server (banner + EHLO only)")
     d.add_argument("--target", help="host to test port 25 against (default: neutral portquiz.net)")
     d.add_argument("--no-public-ip", action="store_true", help="skip public IP / reverse DNS check")
     a = ap.parse_args(argv)
+    if a.cmd == "provider-check":
+        return asyncio.run(_provider_check())
     if a.cmd == "diagnose":
         from .diagnose import diagnose
         return asyncio.run(diagnose(a.domain, a.target, not a.no_public_ip))

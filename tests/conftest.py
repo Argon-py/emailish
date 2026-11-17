@@ -1,6 +1,12 @@
 import asyncio
+import os
 import sys
 from pathlib import Path
+
+# Tests must NEVER spend real provider credits: ignore .env and any provider keys in the shell.
+os.environ["EMAILISH_NO_DOTENV"] = "1"
+for _k in ("ZEROBOUNCE_API_KEY", "MILLIONVERIFIER_API_KEY", "HUNTER_API_KEY", "EMAILISH_PROVIDER"):
+    os.environ.pop(_k, None)
 
 import pytest
 

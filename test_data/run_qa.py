@@ -31,7 +31,7 @@ ROOT = HERE.parent
 OUT = HERE / "qa_results" / "latest"
 RESULT_COLS = ["email_status", "syntax_valid", "domain_valid", "mx_found", "disposable", "free_email",
                "role_based", "smtp_status", "catch_all", "verification_reason", "confidence", "verified_at",
-               "sub_status", "certainty", "did_you_mean", "mx_host", "mail_provider", "smtp_code"]
+               "sub_status", "certainty", "did_you_mean", "mx_host", "mail_provider", "smtp_code", "verified_by"]
 COMPARED = [("expected_status", "email_status"), ("expected_sub_status", "sub_status"),
             ("expected_syntax_valid", "syntax_valid"), ("expected_domain_valid", "domain_valid"),
             ("expected_mx_found", "mx_found"), ("expected_disposable", "disposable"),
@@ -63,7 +63,8 @@ def free_port() -> int:
 
 def start_server(data_dir: Path) -> tuple[subprocess.Popen, str]:
     port = free_port()
-    env = dict(os.environ, EMAILISH_SMTP_ENABLED="false", EMAILISH_DATA_DIR=str(data_dir))
+    env = dict(os.environ, EMAILISH_SMTP_ENABLED="false", EMAILISH_DATA_DIR=str(data_dir),
+               EMAILISH_PROVIDER="none", EMAILISH_NO_DOTENV="1")   # QA must never spend provider credits
     log = open(data_dir / "server.log", "w")
     p = subprocess.Popen([sys.executable, "-m", "uvicorn", "app.main:app", "--host", "127.0.0.1",
                           "--port", str(port)], cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
@@ -116,7 +117,7 @@ def validate_exports(job: dict, input_header: list[str], input_rows: list[list[s
     hdr, rows = read_csv_exact(job["csv"].content)
     check(f"{name}: CSV export downloads (HTTP 200, text/csv)",
           job["csv"].status_code == 200 and "text/csv" in job["csv"].headers.get("content-type", ""))
-    check(f"{name}: CSV header = original columns (same order) + 18 result columns",
+    check(f"{name}: CSV header = original columns (same order) + 19 result columns",
           hdr == input_header + RESULT_COLS, f"got {hdr[:3]}...{hdr[-3:]}")
     check(f"{name}: CSV row count equals input", len(rows) == len(input_rows), f"{len(rows)} vs {len(input_rows)}")
     n = len(input_header)

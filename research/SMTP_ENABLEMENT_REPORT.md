@@ -142,6 +142,16 @@ verification could not be demonstrated here.
 
 ## 6. Deployment configuration (a Linux server with port 25 allowed)
 
+**One command** (Ubuntu/Debian, as root). It installs, writes the settings, runs the readiness
+check, and starts the service on 127.0.0.1 only:
+
+```bash
+curl -fsSLO https://raw.githubusercontent.com/Argon-py/emailish/main/deploy/install.sh
+sudo bash install.sh --helo verify.yourdomain.com --mail-from verify-bounces@yourdomain.com --allow yourdomain.com
+```
+
+Use `--dry-run` to see every step first. The steps it automates are listed below.
+
 Files in [`deploy/`](../deploy/): `emailish.env.example` and `emailish.service`. The
 `docker-compose.yml` is now bound to localhost.
 

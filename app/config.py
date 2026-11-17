@@ -7,6 +7,36 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def load_dotenv() -> list[Path]:
+    """Read KEY=VALUE lines from a .env file in the emailish folder (or the current folder)
+    into the environment, without overriding variables that are already set. This is the
+    easy way to store provider API keys on Windows. .env is git-ignored."""
+    if os.environ.get("EMAILISH_NO_DOTENV"):
+        return []
+    loaded = []
+    for p in dict.fromkeys([ROOT / ".env", Path.cwd() / ".env"]):
+        if not p.is_file():
+            continue
+        for line in p.read_text(encoding="utf-8-sig").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            k, _, v = line.partition("=")
+            k, v = k.strip(), v.strip().strip('"').strip("'")
+            if k.startswith("export "):
+                k = k[7:].strip()
+            if k and k not in os.environ:
+                os.environ[k] = v
+        loaded.append(p)
+    return loaded
+
+
+DOTENV_FILES = load_dotenv()
+
+
 def _env(name: str, default):
     v = os.environ.get(f"EMAILISH_{name}")
     if v is None or v == "":
@@ -46,11 +76,25 @@ class Settings:
     # subdomains); every other address is reported UNKNOWN / smtp_not_permitted without any
     # connection. Use it for controlled testing with domains you own.
     smtp_allowed_domains: str = field(default_factory=lambda: _env("SMTP_ALLOWED_DOMAINS", ""))
+    # --- commercial provider for addresses the local engine cannot settle -------------
+    # EMAILISH_PROVIDER: zerobounce | millionverifier | hunter | none | empty = auto (the one key set)
+    provider: str = field(default_factory=lambda: _env("PROVIDER", ""))
+    zerobounce_api_key: str = field(default_factory=lambda: os.environ.get("ZEROBOUNCE_API_KEY", ""))
+    millionverifier_api_key: str = field(default_factory=lambda: os.environ.get("MILLIONVERIFIER_API_KEY", ""))
+    hunter_api_key: str = field(default_factory=lambda: os.environ.get("HUNTER_API_KEY", ""))
+    # Safety cap: at most this many paid provider checks per job (0 = no provider checks).
+    provider_max_checks: int = field(default_factory=lambda: _env("PROVIDER_MAX_CHECKS", 5000))
+    # Also send CATCH_ALL results to the provider (some providers resolve part of them; costs credits).
+    provider_include_catch_all: bool = field(default_factory=lambda: _env("PROVIDER_INCLUDE_CATCH_ALL", False))
     allow_private_mx: bool = False   # tests only
 
     def __post_init__(self):
         if not self.mail_from:
             self.mail_from = f"verify@{self.helo_host}"
+
+    def provider_key(self, name: str) -> str:
+        return {"zerobounce": self.zerobounce_api_key, "millionverifier": self.millionverifier_api_key,
+                "hunter": self.hunter_api_key}.get(name, "").strip()
 
     @property
     def smtp_allowlist(self) -> tuple[str, ...]:

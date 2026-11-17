@@ -1,5 +1,5 @@
 {
- "started_at": "2026-11-17T15:18:48+00:00",
+ "started_at": "2026-11-17T17:37:31+00:00",
  "health": {
   "dns_backend": "DNS-over-HTTPS: system resolver failed self-test (MX lookup for gmail.com returned nodata )",
   "smtp_enabled": false,
@@ -7,7 +7,10 @@
   "smtp_note": "SMTP checks disabled by configuration",
   "helo_host": "localhost.localdomain",
   "mail_from": "verify@localhost.localdomain",
-  "warnings": []
+  "warnings": [],
+  "provider": "",
+  "provider_credits": null,
+  "provider_note": ""
  },
  "records": {
   "pass": 1000,
@@ -93,118 +96,118 @@
   "csv": {
    "rows": 1000,
    "unique": 748,
-   "upload_s": 0.047,
-   "verify_s": 9.988,
-   "download_s": 0.014,
-   "polls": 178
+   "upload_s": 0.042,
+   "verify_s": 9.803,
+   "download_s": 0.012,
+   "polls": 177
   },
   "xlsx": {
    "rows": 1000,
    "unique": 748,
-   "upload_s": 0.146,
-   "verify_s": 1.044,
-   "download_s": 0.007,
-   "polls": 10
+   "upload_s": 0.132,
+   "verify_s": 0.927,
+   "download_s": 0.006,
+   "polls": 9
   },
   "manual": {
    "rows": 30,
    "unique": 30,
-   "upload_s": 0.011,
-   "verify_s": 0.116,
+   "upload_s": 0.008,
+   "verify_s": 0.129,
    "download_s": 0.005,
    "polls": 3
   }
  },
  "progress_samples_csv_job": [
   [
-   0.028,
+   0.017,
    "running",
    "reading file",
    0,
    0
   ],
   [
-   1.171,
-   "running",
-   "syntax",
-   104,
-   748
-  ],
-  [
-   1.925,
+   1.185,
    "running",
    "verifying",
-   238,
+   242,
    748
   ],
   [
-   2.679,
+   1.927,
    "running",
    "verifying",
-   544,
+   327,
    748
   ],
   [
-   3.438,
+   2.666,
    "running",
    "verifying",
-   565,
+   519,
    748
   ],
   [
-   4.178,
+   3.403,
    "running",
    "verifying",
-   615,
+   613,
    748
   ],
   [
-   4.922,
+   4.141,
    "running",
    "verifying",
-   635,
+   622,
    748
   ],
   [
-   5.673,
+   4.875,
    "running",
    "verifying",
-   656,
+   653,
    748
   ],
   [
-   6.43,
+   5.613,
    "running",
    "verifying",
-   695,
+   677,
    748
   ],
   [
-   7.172,
+   6.346,
    "running",
    "verifying",
-   704,
+   682,
    748
   ],
   [
-   7.914,
+   7.082,
+   "running",
+   "verifying",
+   710,
+   748
+  ],
+  [
+   7.813,
    "running",
    "verifying",
    720,
    748
   ],
   [
-   8.657,
+   8.547,
    "running",
    "verifying",
-   737,
+   735,
    748
   ],
   [
-   9.401,
+   9.285,
    "running",
    "verifying",
-   747,
+   745,
    748
   ]
  ],
@@ -242,7 +245,7 @@
   {
    "check": "progress: intermediate states observed (queued/running before done)",
    "result": "PASS",
-   "detail": "178 polls, phases ['done', 'reading file', 'syntax', 'verifying', 'writing results']"
+   "detail": "177 polls, phases ['done', 'reading file', 'syntax', 'verifying', 'writing results']"
   },
   {
    "check": "CSV job: CSV export downloads (HTTP 200, text/csv)",
@@ -250,9 +253,9 @@
    "detail": ""
   },
   {
-   "check": "CSV job: CSV header = original columns (same order) + 18 result columns",
+   "check": "CSV job: CSV header = original columns (same order) + 19 result columns",
    "result": "PASS",
-   "detail": "got ['Record ID', 'First Name', 'Last Name']...['mx_host', 'mail_provider', 'smtp_code']"
+   "detail": "got ['Record ID', 'First Name', 'Last Name']...['mail_provider', 'smtp_code', 'verified_by']"
   },
   {
    "check": "CSV job: CSV row count equals input",
@@ -292,7 +295,7 @@
   {
    "check": "CSV job: XLSX stores all values as text (no formulas/numbers)",
    "result": "PASS",
-   "detail": "{'s': 23685}"
+   "detail": "{'s': 24685}"
   },
   {
    "check": "CSV job: leading zeros preserved in 'Zip' (CSV and XLSX)",
@@ -360,9 +363,9 @@
    "detail": ""
   },
   {
-   "check": "XLSX job: CSV header = original columns (same order) + 18 result columns",
+   "check": "XLSX job: CSV header = original columns (same order) + 19 result columns",
    "result": "PASS",
-   "detail": "got ['Record ID', 'First Name', 'Last Name']...['mx_host', 'mail_provider', 'smtp_code']"
+   "detail": "got ['Record ID', 'First Name', 'Last Name']...['mail_provider', 'smtp_code', 'verified_by']"
   },
   {
    "check": "XLSX job: CSV row count equals input",
@@ -402,7 +405,7 @@
   {
    "check": "XLSX job: XLSX stores all values as text (no formulas/numbers)",
    "result": "PASS",
-   "detail": "{'s': 23685}"
+   "detail": "{'s': 24685}"
   },
   {
    "check": "XLSX job: leading zeros preserved in 'Zip' (CSV and XLSX)",

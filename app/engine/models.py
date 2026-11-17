@@ -63,6 +63,7 @@ class VerificationResult:
     mx_host: str = ""
     mail_provider: str = ""
     smtp_code: str = ""
+    verified_by: str = "emailish"     # "emailish", or the provider that supplied the verdict
     verified_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     )
@@ -73,7 +74,7 @@ class VerificationResult:
         "free_email", "role_based", "smtp_status", "catch_all",
         "verification_reason", "confidence", "verified_at",
         # transparency extras
-        "sub_status", "certainty", "did_you_mean", "mx_host", "mail_provider", "smtp_code",
+        "sub_status", "certainty", "did_you_mean", "mx_host", "mail_provider", "smtp_code", "verified_by",
     )
 
     def to_row(self) -> dict[str, str]:
@@ -96,6 +97,7 @@ class VerificationResult:
             "mx_host": self.mx_host,
             "mail_provider": self.mail_provider,
             "smtp_code": self.smtp_code,
+            "verified_by": self.verified_by,
         }
 
     def to_json(self) -> dict:

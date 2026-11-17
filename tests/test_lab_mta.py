@@ -23,6 +23,15 @@ pytestmark = pytest.mark.skipif(os.environ.get("EMAILISH_LAB_MTA") != "1",
 LOG = Path("/var/log/postfix-lab.log")
 
 
+@pytest.fixture(autouse=True, scope="module")
+def _lab_running():
+    import socket
+    try:
+        socket.create_connection(("127.0.0.1", 25), 3).close()
+    except OSError:
+        pytest.fail("The Postfix lab is not running on 127.0.0.1:25. Start it with: sudo bash lab/setup_lab_mta.sh")
+
+
 def lab_verifier(**kw) -> Verifier:
     v = Verifier(lab_settings(**kw), dns_backend=lab_dns())
     asyncio.run(v.init())
