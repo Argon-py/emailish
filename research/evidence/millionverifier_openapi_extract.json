@@ -1,0 +1,117 @@
+{
+  "source": "https://developer.millionverifier.com/ (OpenAPI spec embedded in page), captured 2026-11-17",
+  "paths": [
+    "/api/v3",
+    "/api/v3/credits",
+    "/bulkapi/v2/upload",
+    "/bulkapi/v2/fileinfo",
+    "/bulkapi/v2/filelist",
+    "/bulkapi/v2/download",
+    "/bulkapi/stop",
+    "/bulkapi/v2/delete"
+  ],
+  "Subresult_enum": [
+    "unknown",
+    "ok",
+    "internal_error",
+    "invalid_syntax",
+    "no_local_ip_available",
+    "dns_server_failed",
+    "dns_no_mx",
+    "dns_no_a",
+    "could_not_connect",
+    "no_code_in_banner",
+    "invalid_banner_code",
+    "no_code_in_ehlo_response",
+    "no_code_in_helo_response",
+    "no_code_in_mail_from_response",
+    "no_code_in_rcpt_to_response",
+    "ip_blocked",
+    "no_mailbox",
+    "mailbox_disabled",
+    "mailbox_full",
+    "greylisted",
+    "connection_lost",
+    "connection_timeout",
+    "connection_refused",
+    "connection_reset_by_peer",
+    "connection_no_route_to_host",
+    "host_not_accept_incoming_mail",
+    "mail_service_unavailable",
+    "bad_domain",
+    "dns_error",
+    "anti_spam_system",
+    "dns_no_domain",
+    "dns_refused",
+    "timeout_error"
+  ],
+  "SingleApiResponse_properties": {
+    "email": {
+      "type": "string",
+      "description": "The verified email address."
+    },
+    "quality": {
+      "type": "string",
+      "description": "The quality of the email address.",
+      "enum": [
+        "",
+        "good",
+        "bad",
+        "risky"
+      ]
+    },
+    "result": {
+      "type": "string",
+      "description": "The result of email verification.",
+      "enum": [
+        "ok",
+        "catch_all",
+        "unknown",
+        "error",
+        "disposable",
+        "invalid"
+      ]
+    },
+    "resultcode": {
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "type": "integer",
+      "description": "The result of email verification as an integer. 1 (ok), 2 (catch_all), 3 (unknown), 4 (error), 5 (disposable), 6 (invalid)"
+    },
+    "subresult": {},
+    "free": {
+      "type": "boolean",
+      "description": "True if the email address is provided by a free email service such as Gmail or Yahoo."
+    },
+    "role": {
+      "type": "boolean",
+      "description": "True if the email address if linked to a role as opposed to a person. For example: admin@, sales@"
+    },
+    "didyoumean": {
+      "type": "string",
+      "description": "Autocorrection suggestion for common typos."
+    },
+    "credits": {
+      "type": "integer",
+      "description": "Remaining credits in your account."
+    },
+    "executiontime": {
+      "type": "integer",
+      "description": "The time in milliseconds for the email verification."
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message displayed here if result is \"error\"."
+    },
+    "livemode": {
+      "type": "boolean",
+      "description": "Whether the request was made with a real or demo API key"
+    }
+  }
+}

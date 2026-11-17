@@ -1,0 +1,144 @@
+SINGLE EMAIL VALIDATOR - REAL TIME (V2)
+Below are the instructions for our single email validator API, which requires SSL. The API also requires that you have an active credit balance and will never consume a credit for any unknown result. This endpoint can be called asynchronously. See API Validation V2 Rate Limits below for the current request limits.
+To test out our API without using credits, please use the emails provided in our 
+Sandbox Mode (v2).
+The response time for our API is between one second and 30 seconds. Since APIs are meant to be fast by nature, we limit the amount of time we spend validating an email address. If we encounter a slow mail server or a mail server with a greylisting algorithm, you will get an unknown result. You can always revalidate those conditions by uploading a file to the 
+bulk email validator.
+On average, 96-98% of all domains will return in 1 to 5 seconds. There are a handful of domains that run on Postfix/Dovecot, which have a 20-second connection time for real-time validations, and a very small fraction of other domains that are slow to respond to SMTP inquiries. All major ISPs will respond in 1 to 3 seconds, which is typically the majority of email distribution.
+- GET / POST /V2/VALIDATE
+API DEFAULT URL: 
+https://api.zerobounce
+.net
+/v2/validate
+API U.S.A. URL*: 
+https://api-us.zerobounce.net/v2/validate
+API EU URL:
+https://api-eu.zerobounce
+.net
+/v2/validate
+Below are the instructions for our single email validator API, which requires SSL. The API also requires that you have an active credit balance and will never consume a credit for any unknown result. This endpoint can be called asynchronously. See API Validation V2 Rate Limits below for the current request limits.
+Starting September 3, 2026, this endpoint also accepts POST. Use the same parameters as GET, sent in the request body as application/x-www-form-urlencoded.
+*This endpoint uses servers located within the United States. By utilizing this endpoint, you acknowledge and consent to your data being processed on servers in the United States.
+URL / Body Parameters
+Parameter
+Description
+email
+The email address you want to validate
+ip_address
+The IP Address the email signed up from (Can be blank, or can be missing entirely)
+api_key
+Your API Key, found in your account.
+timeout
+The duration (3 - 60 seconds) allowed for the validation. If met, the API will return unknown / greylisted. (optional parameter)
+Default is 30 seconds if a custom value in the timeout parameter is not specified.
+activity_data
+[true/false]
+Activity Data information will be appended to the validation result. (optional parameter)
+Learn more about 
+Activity Data
+.
+verify_plus
+[true/false]
+If set to ‘true,’ Verify+ validation method will be used to get the validation result. It overrides the account settings made regarding Verify+. (optional parameter)
+Learn more about 
+Verify+
+If you want to call the API from your browser to test it, all you need to do is to replace the API KEY with your key:
+https://api.zerobounce.net/v2/validate?api_key=replacewithyours&email=valid@example.com&ip_address=156.124.12.145
+https://api-us.zerobounce.net/v2/validate?api_key=replacewithyours&email=valid@example.com&ip_address=156.124.12.145
+https://api-eu.zerobounce.net/v2/validate?api_key=replacewithyours&email=valid@example.com&ip_address=156.124.12.145
+TO VERIFY AN EMAIL ADDRESS, USE THE FOLLOWING CODES FOR THE FOLLOWING LANGUAGES:
+PHP
+iOS
+Rust
+Ruby
+Python
+Pascal
+Delphi
+Java
+Javascript
+Node
+C#
+Android(Kottlin)
+Go
+C
+C++
+THE API WILL RETURN THESE RESULTS IN A JSON FORMAT USING THE "VALIDATE" METHOD.
+JSON Properties
+Properties
+Description
+address
+The email address you are validating.
+status
+[valid, invalid, catch-all, unknown, spamtrap, abuse, do_not_mail]
+sub_status
+[alternate, antispam_system, greylisted, mail_server_temporary_error, forcible_disconnect, mail_server_did_not_respond, timeout_exceeded, failed_smtp_connection, mailbox_quota_exceeded, exception_occurred, possible_trap, role_based, global_suppression, mailbox_not_found, no_dns_entries, failed_syntax_check, possible_typo, unroutable_ip_address, leading_period_removed, does_not_accept_mail, alias_address, role_based_catch_all, disposable, toxic, accept_all, gold]
+account
+The portion of the email address before the "@" symbol.
+domain
+The portion of the email address after the "@" symbol.
+did_you_mean
+Suggestive Fix for an email typo
+domain_age_days
+Age of the email domain in days or [null].
+active_in_days
+The last activity date that is less than [30/60/90/180/365/365+]
+active_first_seen
+The first date when we detected a signal (activity) for this email
+free_email
+[true/false] If the email comes from a free provider.
+mx_found
+[true/false] Does the domain have an MX record.
+mx_record
+The preferred MX record of the domain
+smtp_provider
+The SMTP Provider of the email or [null] [BETA].
+catchall_domain
+- [true/false or null] Is the domain name a catch-all (the domain email server responds with valid to any SMTP checks and emailing to an invalid might not bounce)?
+firstname
+The first name of the owner of the email when available or [null].
+lastname
+The last name of the owner of the email when available or [null].
+gender
+The gender of the owner of the email when available or [null].
+city
+The city of the IP passed in or [null]
+region
+The region/state of the IP passed in or [null]
+zipcode
+The zipcode of the IP passed in or [null]
+country
+The country of the IP passed in or [null]
+processed_at
+The UTC time the email was validated.
+API Validation V2 Rate Limits
+We allow a maximum of 
+80,000
+requests in 10 seconds
+validations
+ (100,000 for 
+ZeroBounce ONE™ Customers
+) 
+for the following endpoints:
+https://api.zerobounce
+.net
+/v2/validate
+https://api-us.zerobounce.net/v2/validate
+https://api-eu.zerobounce
+.net
+/v2/validate
+Exceeding this limit will result in a temporary block for 1 minute.
+Bad API key requests 
+(200 times in 1 hour)
+  to the following endpoints will result in a temporary block for 1 hour:
+https://api.zerobounce
+.net
+/v2/validate
+https://api-us.zerobounce.net/v2/validate
+https://api-eu.zerobounce
+.net
+/v2/validate
+*This endpoint uses servers located within the United States. By utilizing this endpoint, you acknowledge and consent to your data being processed on servers in the United States.
+If you require an increase beyond the default rate limits, please 
+contact our support team
+ to discuss your needs.
+Was this page helpful?

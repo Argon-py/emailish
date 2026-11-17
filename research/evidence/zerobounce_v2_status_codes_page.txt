@@ -1,0 +1,311 @@
+Status Code (v2) | ZeroBounce Documentation
+Skip to main content
+Search...
+⌘ K
+Ask AI
+Log In
+Sign Up Free
+Home
+Getting started
+Products
+API
+Integrations
+FAQ
+About ZeroBounce
+Browse documentation
+Search...
+Getting started
+Products
+API
+Integrations
+FAQ
+About ZeroBounce
+Title
+Contextual
+Esc
+Type at least 
+2
+ characters to search the docs.
+↑↓ Navigate
+↵ Open
+Esc Close
+Docs Assistant
+Answers written from the ZeroBounce documentation
+Hi! I'm your ZeroBounce Docs Assistant. How can I help you with our APIs or integrations today?
+Try Asking
+Loading suggestions...
+AI-generated from our docs. Check important details against the linked pages.
+Need a person? Contact Support
+API
+API
+Email Validation API
+Connecting with Postman
+Get Credit Balance (v2)
+Get API Usage (v2)
+Single Email Validator-Real time (v2)
+Greylist API Processing
+Website Availability and WHOIS Checker
+Batch Email Validator-Real time (v2)
+Allowlist and Blocklist (v2)
+Sandbox Mode (v2)
+Status Codes (v2)
+V2 Changes
+File Management Overview (v2)
+Send File (v2)
+File Status (v2)
+Get File (v2)
+Delete File (v2)
+Inbox Placement Tester API
+Warmup API
+Activity Data API
+List Evaluator API
+Email Finder API
+Domain Search API
+A.I. Scoring API
+Api Dashboard
+API Wrappers
+API Migration
+Home
+Email Validation API Quickstart
+v2 Status Codes
+Status Codes (V2)
+DELIVERABILITY STATUS EXPLANATION
+valid
+We determined these addresses to be valid and safe to email. They will have a very low bounce rate of under 2%.
+ If you receive bounces, it can be because your IP might be blacklisted where our IP was not. Sometimes, the email accounts exist, but they only accept mail from people in their contact lists. In other instances, you may be throttled on the number of emails you can send to a specific domain per hour. It's important to look at the SMTP Bounce codes to determine why a bounce occurred.
+Status
+Sub-status
+Meaning
+What to do
+valid
+alias_address
+Forwarder or alias, not a real inbox. Mail sent to it is forwarded (for example, forward@example.com to realinbox@example.com) and will not bounce.
+Safe to email
+valid
+leading_period_removed
+Leading "." removed from a gmail.com address so it works with all mailing systems.
+Safe to email
+valid
+alternate
+Valid secondary address, often with numbers or special characters (for example, 12j.o-hn2023@gmail.com). These see less engagement than a primary address.
+Safe to email
+valid
+gold
+Most active recipients. They consistently open, click, and interact. Prioritizing them can help your sender reputation.
+Safe to email
+valid
+role_based_accept_all
+Role-based address on a catch-all domain that is also on the ZeroBounce accept_all list.
+Review
+valid
+accept_all
+Domain on the ZeroBounce accept_all list. The server accepts any recipient and does not SMTP-bounce (for example, amazon.com, zerobounce.net). Long-term bounce rate is under 2%. Monitor engagement if you want.
+Safe to email
+valid
+ai_agent_mailbox
+Controlled by an AI agent rather than a person. It can receive, process, and reply automatically, and mail to it will not bounce.
+Safe to email
+How is this different from the standalone “catch-all” status?
+accept_all ➜ Domain vetted by ZeroBounce, historically delivers, returned as valid;
+catch-all ➜ Domain not in the allow-list; actual deliverability cannot be confirmed;
+invalid
+These are the emails that we determined to be invalid. Please delete them from your email list. The email can be deemed invalid for various reasons, such as “mailbox not found.” The address also may not accept emails.Below is a list of sub_status codes to help explain some of the invalid results.
+Status
+Sub-status
+Meaning
+What to do
+invalid
+does_not_accept_mail
+These domains only send mail and do not accept it.
+Delete from list
+invalid
+failed_syntax_check
+Fails RFC syntax protocols.
+Delete from list
+invalid
+possible_typo
+Misspelled popular domain.
+Delete from list
+invalid
+mailbox_not_found
+Valid syntax, but the mailbox does not exist.
+Delete from list
+invalid
+no_dns_entries
+Valid syntax, but the domain has no DNS records or incomplete DNS records, so delivery may fail.
+Delete from list
+invalid
+mailbox_quota_exceeded
+Over its space quota and not accepting mail (temporarily).
+Review
+invalid
+unroutable_ip_address
+Domain points to an unroutable IP address.
+Delete from list
+catch-all
+These addresses are on domains whose mail server accepts mail for any address, whether or not the mailbox exists. Because the server reports every address as valid.
+Catch-all addresses are riskier than valid ones. Some will deliver, some will bounce, and some may reach a mailbox nobody reads. If you choose to email them, put them in their own segment, send at low volume first, and watch bounce and engagement rates before you scale. ZeroBounce AI Scoring can help you decide which catch-all addresses are worth keeping.
+Status
+Sub-status
+Meaning
+What to do
+catch-all
+—
+Impossible to validate without sending a real email and waiting for a bounce. The server reports every address as valid. Segment these if you email them; some will bounce.
+Review
+catch-all
+ai_agent_mailbox
+Catch-all domain, so the mailbox cannot be confirmed. If it is active, it is likely managed by an AI agent. Mail may or may not reach a recipient.
+Review
+Learn more about Catch-All Emails
+spamtrap
+These addresses are believed to be spam traps. ISPs, blocklist operators and anti-spam organizations use them to catch senders with poor list hygiene. Some were never used by a real person (pristine traps). Others are old, abandoned addresses that were brought back after a long period of inactivity (recycled traps). Either way, a spam trap on your list usually means some of your data was purchased, scraped or has gone stale.
+Hitting a spam trap can hurt your sender reputation, send your mail to spam folders or get your IP or domain blocklisted, sometimes after a single send. Remove these addresses and do not email them.
+Status
+Sub-status
+Meaning
+What to do
+spamtrap
+—
+Believed to be 
+spam traps
+. Do not email them. ZeroBounce detects many of these addresses, but not all of them.
+Avoid
+Read our Guide to Spam Traps to learn more
+abuse
+These addresses belong to people known to report emails as spam, file complaints, or click links in spam and bulk messages. The mailbox usually exists and accepts mail, but sending to it puts your reputation at risk.
+ISPs weigh spam complaints heavily when deciding where your mail lands. A small number of complaints can push you over mailbox provider limits and lower inbox placement for your whole list. We recommend removing these addresses and not emailing them.
+Status
+Sub-status
+Meaning
+What to do
+abuse
+—
+People known to click spam, bulk, or report. Do not email these addresses.
+Avoid
+do_not_mail
+These are company emails, role-based, or simply addresses you should avoid emailing. They are broken down into 7 sub-categories "disposable", "toxic", "role_based", "role_based_catch_all", "global_suppression", "mx_forward" and "possible_trap." Examine this file and determine if you want to email these addresses.
+Status
+Sub-status
+Meaning
+What to do
+do_not_mail
+role_based
+Group address such as sales@, info@, or contact@. Strongly linked to spam complaints.
+Avoid
+do_not_mail
+disposable
+Temporary address that expires. Adding it can cause bounces later.
+Do not add
+do_not_mail
+role_based_catch_all
+Role-based address on a catch-all domain.
+Avoid
+do_not_mail
+mx_forward
+Domain forwards its MX records to one domain. Similar to a disposable domain.
+Do not add
+do_not_mail
+global_suppression
+Found on popular global suppression lists (GSL), including known complainers, purchased addresses, domains that do not send mail, and known litigators.
+Avoid
+do_not_mail
+possible_trap
+Contains keywords that may indicate a spam trap, such as spam@ or @spamtrap.com. Check before sending.
+Review
+do_not_mail
+toxic
+Known for abuse, spam, or bot-created mailboxes. Do not email them. Check the other fields before you send.
+Avoid
+unknown
+We couldn’t validate for one reason or another. Typical cases include an offline mail server or an anti-spam email system. 
+ In most cases, 80% of unknowns are invalid/bad email addresses. We have the lowest "unknowns" of any 
+email validator
+ and don't make this statement lightly. We paid and tested email lists at over 50 validation companies to compare results.
+ If you do encounter a large number of unknowns, please submit those for re-validation. Remember, you are not charged for unknown results, credits will be credited back. If you still have a large number, contact us and we will take a look and verify.
+Status
+Sub-status
+Meaning
+What to do
+unknown
+antispam_system
+Anti-spam systems are blocking validation. You can submit these through the contact us screen.
+Review
+unknown
+exception_occurred
+Validation threw an exception. If this repeats, contact us.
+Review
+unknown
+failed_smtp_connection
+Mail server will not allow an SMTP connection. Usually invalid.
+Review
+unknown
+forcible_disconnect
+Mail server disconnects immediately. Usually invalid.
+Review
+unknown
+greylisted
+Greylisting is blocking this attempt. Resubmit; these often validate on a second pass.
+Review
+unknown
+mail_server_did_not_respond
+Mail server is not responding to mail commands. Usually invalid.
+Review
+unknown
+mail_server_temporary_error
+Mail server returned a temporary error. Usually invalid.
+Review
+unknown
+timeout_exceeded
+Mail server responds slowly. Usually invalid.
+Review
+We also provide a sub_status code to help explain some of the unknown and invalid results. Not all unknowns and invalids will have sub_status codes.
+OTHER FIELDS
+free_email
+ - [true/false] Does the email come from a free provider?
+mx_found
+ - [true/false] Does the domain have an MX record?
+mx_record
+ - The preferred MX record of the domain
+smtp_provider
+ - The SMTP Provider of the email or [null] (BETA)
+catchall_domain
+ - [true/false or null] Is the domain name a catch-all (the domain email server responds with valid to any SMTP checks and emailing to an invalid might not bounce)?
+DO NOT MAIL - WHY DO WE FLAG THESE?
+As a responsible 
+email validation
+ service, we do our best to protect your IP/Domain Mailing Reputation. Your mailing campaign succeeds when your email lands in the inbox, not the junk box.
+Just eliminating bounces is the first step to a healthy IP Reputation, but there are many more steps. 
+Read our Email Deliverability Guide.
+The "Do Not Mail" Status represents one of the next steps where we identify potential emails that can cause harm to your IP/Domain Reputation.
+ROLE-BASED
+MailChimp
+Constant_Contact
+SendGrid
+Nation_Builder
+Benchmark_Email
+Let's dig a little deeper into the meaning of role-based and why, but let's hear it from the mailing exports of major ESP Providers who send billions of emails daily. Click on the following links below.
+There are hundreds of more links from many more large companies than the ones above explaining why. We understand that depending on your business model and industry, you might need to send messages to role-based emails. You may do this, but we must communicate the risk involved. It's your decision on which role-based emails to mail and whether the risk is worthwhile.
+All emails that we flag as "Role-Based" are valid emails.
+Was this page helpful?
+Yes
+No
+Previous
+Sandbox Mode (V2)
+Next
+V2 Changes
+Need technical help?
+Talk to Support
+Got a question?
+Talk to Sales
+Interested in our
+partner programs
+?
+Need technical help?
+Talk to Support
+Got a question?
+Talk to Sales
+Interested in our
+partner programs
+?
+Manage Cookie Preferences

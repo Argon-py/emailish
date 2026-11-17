@@ -1,0 +1,20 @@
+score	method	status	shape	auth signals	url
+15	POST	400	object{message}		https://aplo-evnt.com/api/v1/intent_pixel/track_request?app_id=<redacted>
+12	GET	200	object{can_track}		https://aplo-evnt.com/api/v1/intent_pixel/can_track_visitor?x_app_id=<redacted>
+9	GET	200	list[1]		https://cdn-cookieyes.com/client_data/a8775a57f97635e13888e7fb/uqzGZKtv.json
+9	GET	200	object{cky_audit_table_empty_text,cky_audit_table_header_description,cky_audit_table_header_duration,cky_audit_table_header_id,cky_preference_advertisement_description,cky_preference_advertisement_title,cky_preference_analytics_description,cky_preference_analytics_title,cky_preference_functional_description,cky_preference_functional_title,cky_preference_necessary_description,cky_preference_necessary_title,...}		https://cdn-cookieyes.com/client_data/a8775a57f97635e13888e7fb/audit-table/nljRBsvC.json
+7	GET	204	unknown	cookie,cookie-jar	https://www.millionverifier.com/members/api/member/
+7	GET	302	unknown	cookie,cookie-jar	https://www.millionverifier.com/ghost/api/content/settings/?key=<redacted>
+7	GET	302	unknown	cookie,cookie-jar	https://www.millionverifier.com/ghost/api/content/tiers/?limit=<redacted>&include=<redacted>&key=<redacted>
+7	GET	302	unknown	cookie,cookie-jar	https://www.millionverifier.com/ghost/api/content/newsletters/?limit=<redacted>&key=<redacted>
+7	POST	204	unknown	cookie,cookie-jar	https://www.millionverifier.com/cdn-cgi/rum
+7	GET	200	object{continent,country,country_name,in_eu,ip,region_code}		https://directory.cookieyes.com/api/v1/ip
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	204	unknown	cookie,cookie-jar	https://px.ads.linkedin.com/wa/?medium=<redacted>&fmt=<redacted>
+6	POST	200	unknown		https://log.cookieyes.com/api/v1/log
+6	POST	204	unknown		https://analytics.google.com/g/collect?v=<redacted>&tid=<redacted>&gtm=<redacted>&_p=<redacted>&_gaz=<redacted>&gcs=<redacted>&gcd=<redacted>&npa=<redacted>&dma=<redacted>&gdid=<redacted>&_eu=<redacted>&cid=<redacted>&frm=<redacted>&pscdl=<redacted>&rcb=<redacted>&sr=<redacted>&uaa=<redacted>&uab=<redacted>&uafvl=<redacted>&uam=<redacted>&uamb=<redacted>&uap=<redacted>&uapv=<redacted>&uaw=<redacted>&ul=<redacted>&gaf=<redacted>&_s=<redacted>&tag_exp=<redacted>&sid=<redacted>&sct=<redacted>&seg=<redacted>&dl=<redacted>&dt=<redacted>&en=<redacted>&_fv=<redacted>&_nsi=<redacted>&_ss=<redacted>&_ee=<redacted>&tfd=<redacted>
+4	GET	-1	unknown		https://gbd-team.cloudflareaccess.com/cdn-cgi/access/login/www.millionverifier.com?kid=<redacted>&meta=<redacted>&redirect_url=<redacted>
+4	GET	-1	unknown		https://gbd-team.cloudflareaccess.com/cdn-cgi/access/login/www.millionverifier.com?kid=<redacted>&meta=<redacted>&redirect_url=<redacted>
+4	GET	-1	unknown		https://gbd-team.cloudflareaccess.com/cdn-cgi/access/login/www.millionverifier.com?kid=<redacted>&meta=<redacted>&redirect_url=<redacted>
+4	GET	-1	unknown		https://app.saasfirst.com/backend/chat/w/ogc5jwqfa/style
+2	POST	204	unknown		https://stats.g.doubleclick.net/g/collect?v=<redacted>&tid=<redacted>&cid=<redacted>&gtm=<redacted>&rcb=<redacted>&aip=<redacted>&dma=<redacted>&gcs=<redacted>&gcd=<redacted>&npa=<redacted>&frm=<redacted>&tag_exp=<redacted>

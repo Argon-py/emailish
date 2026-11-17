@@ -1,0 +1,30 @@
+score	method	status	shape	auth signals	url
+15	POST	200	object{}		https://o36448.ingest.us.sentry.io/api/249583/envelope/?sentry_version=<redacted>&sentry_key=<redacted>&sentry_client=<redacted>
+12	POST	200	object{config,errorsWhileComputingFlags,evaluatedAt,flags,isAuthenticated,requestId,sessionRecording,supportedCompression,toolbarParams}		https://eu.posthog.com/flags/?v=<redacted>
+12	GET	200	object{surveys}		https://eu.i.posthog.com/api/surveys/?token=<redacted>&_=<redacted>
+9	GET	200	object{automatic_advanced_matching_enabled}		https://bzrcdn.openai.com/pixel-config/v1/TgqZHz1hyJ4Piq33UgVfAZ.json
+9	GET	200	object{aam,esc,pixelEventConfigs}		https://pixel-config.reddit.com/pixels/a2_grxgoq8aw5jj/config
+7	POST	204	unknown	cookie,cookie-jar	https://hunter.io/cdn-cgi/rum
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	200	unknown		https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	202	unknown		https://bzr.openai.com/v1/sdk/events?pid=<redacted>&st=<redacted>&sv=<redacted>&t=<redacted>&ec=<redacted>
+7	POST	200	unknown	cookie,cookie-jar	https://alb.reddit.com/rp?id=<redacted>&event=<redacted>
+7	POST	204	unknown	cookie,cookie-jar	https://bat.bing.com/p/conversions/c/h
+7	POST	204	unknown	cookie,cookie-jar	https://px.ads.linkedin.com/wa/?medium=<redacted>&fmt=<redacted>
+6	POST	200	unknown		https://www.google.com/ccm/collect?rcb=<redacted>&frm=<redacted>&apvc=<redacted>&ae=<redacted>&auid=<redacted>&dt=<redacted>&en=<redacted>&dl=<redacted>&scrsrc=<redacted>&rnd=<redacted>&navt=<redacted>&npa=<redacted>&ep.ads_data_redaction=<redacted>&gtm=<redacted>&gcd=<redacted>&dma=<redacted>&tag_exp=<redacted>&tft=<redacted>&tfd=<redacted>&fmt=<redacted>
+6	POST	204	unknown		https://ad.doubleclick.net/ccm/s/collect?auid=<redacted>&gtm=<redacted>&fmt=<redacted>
+6	POST	200	unknown		https://www.google.com/rmkt/collect/17424930585/?random=<redacted>&cv=<redacted>&fst=<redacted>&fmt=<redacted>&bg=<redacted>&guid=<redacted>&async=<redacted>&en=<redacted>&gtm=<redacted>&gcd=<redacted>&dma=<redacted>&tag_exp=<redacted>&u_w=<redacted>&u_h=<redacted>&url=<redacted>&rcb=<redacted>&frm=<redacted>&tiba=<redacted>&hn=<redacted>&npa=<redacted>&pscdl=<redacted>&auid=<redacted>&uaa=<redacted>&uab=<redacted>&uafvl=<redacted>&uamb=<redacted>&uam=<redacted>&uap=<redacted>&uapv=<redacted>&uaw=<redacted>&data=<redacted>&ept=<redacted>&gcp=<redacted>
+6	POST	200	unknown		https://www.google.com/ccm/collect?rcb=<redacted>&frm=<redacted>&apvc=<redacted>&auid=<redacted>&dt=<redacted>&tid=<redacted>&en=<redacted>&dl=<redacted>&scrsrc=<redacted>&rnd=<redacted>&navt=<redacted>&npa=<redacted>&gtm=<redacted>&gcd=<redacted>&dma=<redacted>&tag_exp=<redacted>&tft=<redacted>&tfd=<redacted>&tids=<redacted>&fmt=<redacted>
+6	POST	204	unknown		https://analytics.google.com/g/collect?v=<redacted>&tid=<redacted>&gtm=<redacted>&_p=<redacted>&_gaz=<redacted>&gcd=<redacted>&npa=<redacted>&dma=<redacted>&_eu=<redacted>&cid=<redacted>&frm=<redacted>&ibt=<redacted>&ngs=<redacted>&pscdl=<redacted>&rcb=<redacted>&sr=<redacted>&uaa=<redacted>&uab=<redacted>&uafvl=<redacted>&uam=<redacted>&uamb=<redacted>&uap=<redacted>&uapv=<redacted>&uaw=<redacted>&ul=<redacted>&_s=<redacted>&tag_exp=<redacted>&sid=<redacted>&sct=<redacted>&seg=<redacted>&dl=<redacted>&dt=<redacted>&en=<redacted>&_fv=<redacted>&_nsi=<redacted>&_ss=<redacted>&tfd=<redacted>
+6	POST	204	unknown		https://analytics.google.com/g/collect?v=<redacted>&tid=<redacted>&gtm=<redacted>&_p=<redacted>&_gaz=<redacted>&gcd=<redacted>&npa=<redacted>&dma=<redacted>&_eu=<redacted>&cid=<redacted>&frm=<redacted>&ibt=<redacted>&ngs=<redacted>&pscdl=<redacted>&rcb=<redacted>&sr=<redacted>&uaa=<redacted>&uab=<redacted>&uafvl=<redacted>&uam=<redacted>&uamb=<redacted>&uap=<redacted>&uapv=<redacted>&uaw=<redacted>&ul=<redacted>&_s=<redacted>&tag_exp=<redacted>&dl=<redacted>&dt=<redacted>&sid=<redacted>&sct=<redacted>&seg=<redacted>&en=<redacted>&_fv=<redacted>&_ss=<redacted>&tfd=<redacted>
+5	GET	200	object{prefetch,tag}	cookie,cookie-jar	https://hunter.io/cdn-cgi/speculation
+2	POST	204	unknown	cookie,cookie-jar	https://stats.g.doubleclick.net/g/collect?v=<redacted>&ngs=<redacted>&ibt=<redacted>&tid=<redacted>&cid=<redacted>&gtm=<redacted>&rcb=<redacted>&aip=<redacted>&dma=<redacted>&gcd=<redacted>&npa=<redacted>&frm=<redacted>&tag_exp=<redacted>
+2	POST	204	unknown		https://bat.bing.net/actionp/0?ti=<redacted>&Ver=<redacted>&mid=<redacted>&bo=<redacted>&evt=<redacted>&src=<redacted>&cdb=<redacted>&asc=<redacted>
+2	POST	204	unknown		https://bat.bing.com/actionp/0?ti=<redacted>&Ver=<redacted>&mid=<redacted>&bo=<redacted>&sid=<redacted>&vid=<redacted>&vids=<redacted>&msclkid=<redacted>&evt=<redacted>&src=<redacted>&cdb=<redacted>&asc=<redacted>
+2	POST	204	unknown	cookie,cookie-jar	https://stats.g.doubleclick.net/g/collect?v=<redacted>&ngs=<redacted>&ibt=<redacted>&tid=<redacted>&cid=<redacted>&gtm=<redacted>&rcb=<redacted>&aip=<redacted>&dma=<redacted>&gcd=<redacted>&npa=<redacted>&frm=<redacted>&tag_exp=<redacted>

@@ -1,0 +1,80 @@
+## demo key API_KEY_FOR_OK (public, documented test key)
+{
+    "email": "john.doe@example.com",
+    "quality": "good",
+    "result": "ok",
+    "resultcode": 1,
+    "subresult": "ok",
+    "free": false,
+    "role": false,
+    "didyoumean": "",
+    "credits": 0,
+    "executiontime": 0,
+    "error": "",
+    "livemode": false
+}
+
+## demo key API_KEY_FOR_CATCH_ALL (public, documented test key)
+{
+    "email": "john.doe@example.com",
+    "quality": "risky",
+    "result": "catch_all",
+    "resultcode": 2,
+    "subresult": "ok",
+    "free": false,
+    "role": false,
+    "didyoumean": "",
+    "credits": 0,
+    "executiontime": 0,
+    "error": "",
+    "livemode": false
+}
+
+## demo key API_KEY_FOR_INVALID (public, documented test key)
+{
+    "email": "john.doe@example.com",
+    "quality": "bad",
+    "result": "invalid",
+    "resultcode": 6,
+    "subresult": "no_mailbox",
+    "free": false,
+    "role": false,
+    "didyoumean": "",
+    "credits": 0,
+    "executiontime": 0,
+    "error": "",
+    "livemode": false
+}
+
+## demo key API_KEY_FOR_UNKOWN (public, documented test key)
+{
+    "email": "john.doe@example.com",
+    "quality": "risky",
+    "result": "unknown",
+    "resultcode": 3,
+    "subresult": "unknown",
+    "free": false,
+    "role": false,
+    "didyoumean": "",
+    "credits": 0,
+    "executiontime": 0,
+    "error": "",
+    "livemode": false
+}
+
+## demo key API_KEY_FOR_DISPOSABLE (public, documented test key)
+{
+    "email": "john.doe@example.com",
+    "quality": "bad",
+    "result": "disposable",
+    "resultcode": 5,
+    "subresult": "disposable",
+    "free": false,
+    "role": false,
+    "didyoumean": "",
+    "credits": 0,
+    "executiontime": 0,
+    "error": "",
+    "livemode": false
+}
+

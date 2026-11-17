@@ -1,0 +1,7 @@
+score	method	status	shape	auth signals	url
+12	GET	200	list[1]		https://members-api.zerobounce.net/api/promotions/anonymous?lang=<redacted>
+12	POST	200	object{i,n}	cookie,cookie-jar	https://www.zerobounce.net/cdn-cgi/challenge-platform/h/b/precursor/f8df4d4a0cd6/0.5474469637485593:1794914148:Ufa2kjQ2d9JRH_uPytCYNFfGD63rAJ2kf86DF9TYOik/a5beba15eb76e06b
+5	GET	200	object{prefetch,tag}	cookie,cookie-jar	https://www.zerobounce.net/cdn-cgi/speculation
+4	GET	200	unknown	cookie,cookie-jar	https://www.zerobounce.net/free-email-verifier?_rsc=<redacted>
+4	GET	200	unknown	cookie,cookie-jar	https://www.zerobounce.net/free-email-verifier?_rsc=<redacted>
+4	GET	200	unknown	cookie,cookie-jar	https://www.zerobounce.net/free-email-verifier?_rsc=<redacted>

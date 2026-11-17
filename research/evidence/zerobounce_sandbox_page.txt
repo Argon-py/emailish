@@ -1,0 +1,43 @@
+Sandbox Mode (V2)
+To help you test every scenario of status and sub_status codes with the API, we put together a list of emails that will return specific results when used with the API for testing purposes. Testing with these emails will not use any of your credits.
+In addition, we also provide an IP address to test with to get GEO-Location results.
+You will still need to use your API KEY with these test email addresses.
+disposable@example.com
+invalid@example.com
+valid@example.com
+toxic@example.com
+donotmail@example.com
+spamtrap@example.com
+abuse@example.com
+unknown@example.com
+catch_all@example.com
+antispam_system@example.com
+does_not_accept_mail@example.com
+exception_occurred@example.com
+failed_smtp_connection@example.com
+failed_syntax_check@example.com
+forcible_disconnect@example.com
+global_suppression@example.com
+greylisted@example.com
+leading_period_removed@example.com
+mail_server_did_not_respond@example.com
+mail_server_temporary_error@example.com
+mailbox_quota_exceeded@example.com
+mailbox_not_found@example.com
+no_dns_entries@example.com
+possible_trap@example.com
+possible_typo@example.com
+role_based@example.com
+timeout_exceeded@example.com
+unroutable_ip_address@example.com
+free_email@example.com
+role_based_catch_all@example.com
+gold@example.com
+role_based_accept_all@example.com
+aiagentmailbox@example.com
+You can use this IP to test the GEO Location in the API.
+99.110.204.1
+Please view 
+our status codes documentation
+ to learn more about each status.
+Was this page helpful?
